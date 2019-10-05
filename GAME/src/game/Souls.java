@@ -28,13 +28,13 @@ public abstract class Souls {
     
     public void equip(Equipament e){
         this.equipamentOwner = e;
-        e.attackDamage += this.attackDamage;
-        e.magicDamage += this.magicDamage;
+        e.setAttackDamage(e.getAttackDamage() + this.attackDamage);
+        e.setMagicDamage(e.getMagicDamage() + this.magicDamage);
     }
     
     public void unequip(){
-        this.equipamentOwner.attackDamage -= this.attackDamage;
-        this.equipamentOwner.magicDamage -= this.magicDamage;
+        this.equipamentOwner.setAttackDamage(this.equipamentOwner.getAttackDamage() - this.attackDamage);
+        this.equipamentOwner.setMagicDamage(this.equipamentOwner.getMagicDamage() - this.magicDamage);;
         this.equipamentOwner = null;
     }
     

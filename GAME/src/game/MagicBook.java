@@ -7,13 +7,13 @@ package game;
 
 /**
  *
- * @author soldgear
+ * @author user
  */
-public class Sword extends Equipament{
+public class MagicBook extends Equipament{
     
-    public Sword(String nome, int cost){
-        super(nome, cost);
-        setAttackDamage(10);
+    public MagicBook(String name, int cost){
+        super(name,cost);
+        setMagicDamage(8);
     }
     
 }

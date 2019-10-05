@@ -7,22 +7,22 @@ package game;
 
 /**
  *
- * @author soldgear
+ * @author user
  */
-public class Warrior extends Character{
+public class Mage extends Character{
     
-    public Warrior(String name){
-            super(name);
-            setHealthPoints(200);
-            setEnergyPoints(100);
-            setAttackDamage(8);
-            setMagicDamage(0);
+    public Mage(String name){
+        super(name);
+        setAttackDamage(2);
+        setMagicDamage(12);
     }
+    
     @Override
     public void attack(Character enemy){
-        enemy.healthPoints -= this.attackDamage * this.level * 0.2;
+        enemy.healthPoints -= (this.magicDamage) * this.level * 0.2;
         if (enemy.healthPoints <= 0){
             this.experience += enemy.getBounty();
         }
-    } 
+    }
+    
 }

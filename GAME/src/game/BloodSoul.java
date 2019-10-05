@@ -12,7 +12,7 @@ package game;
 public class BloodSoul extends Souls{
     
     public BloodSoul(String name, int magic, int attack){
-        super("Blood Soul", 0, 8);
+        super(name, magic, attack);
     }
     
     @Override

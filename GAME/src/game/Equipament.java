@@ -13,25 +13,40 @@ public class Equipament {
     
     protected Character charOwner;
     
-    protected String name;
-    protected int cost;
+    private String name;
+    private int cost;
     
-    protected int attackDamage;
-    protected int magicDamage;
+    private int attackDamage;
+    private int magicDamage;
     
-    protected int healthPoints;
-    protected int energyPoints;
+    private int healthPoints;
+    private int energyPoints;
     
-    protected Souls souls;
+    private Souls souls;
     
     public Equipament(String name, int cost){
         this.name = name;
         this.cost = cost;
     }
     
-    public void equipSoul(Souls s){
+    public void equipOnChar(Character owner){
+        this.charOwner = owner;
+        owner.attackDamage += this.attackDamage;
+        owner.magicDamage += this.magicDamage;
+    }
+    
+    public void unequip(){
+        this.charOwner.equipament = null;
+        this.charOwner.attackDamage -= this.attackDamage;
+        this.charOwner.magicDamage -= this.magicDamage;
+        this.charOwner = null;
+    }
+    
+    public void setSoul(Souls s){
         this.souls = s;
         s.equip(this);
+        charOwner.attackDamage += this.attackDamage;
+        charOwner.magicDamage += this.magicDamage;
     }
     
     public void unequipSoul(){
@@ -45,5 +60,47 @@ public class Equipament {
         souls.SoulAction(enemy);
         charOwner.energyPoints -= 5;
     }
+
+    public Character getCharOwner() {
+        return charOwner;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getCost() {
+        return cost;
+    }
+
+    public int getAttackDamage() {
+        return attackDamage;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public int getMagicDamage() {
+        return magicDamage;
+    }
+    
+    public void setMagicDamage(int magicDamage) {
+        this.magicDamage = magicDamage;
+    }
+
+    public int getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getEnergyPoints() {
+        return energyPoints;
+    }
+
+    public Souls getSouls() {
+        return souls;
+    }
+    
+    
     
 }

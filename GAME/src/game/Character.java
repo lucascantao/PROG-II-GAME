@@ -29,32 +29,101 @@ public abstract class Character {
         experience = 0.0;
     }
     
-    public void equip(Equipament e){ // Habilitar Equipamento e atualizar Status
+    public abstract void attack(Character enemy);
+    
+    public void setEquipmament(Equipament e){ // Habilitar Equipamento e atualizar Status
         if(this.equipament == null){
             this.equipament = e;
-            e.charOwner = this;
-            this.attackDamage += e.attackDamage;
-            this.magicDamage += e.magicDamage;
+            e.equipOnChar(this);
+            System.out.println("\n*"+ e.getName() +" EQUIPED"+"*\n");
         }else{
             System.out.println("Error");
         }
     }
     
-    public void unequip(){ // Tirar eauipamento e atualizar Status
-        if (this.equipament == null){
-            System.out.println("Error");
+    public void unequip(){ // Tirar equipamento e atualizar Status
+        if (this.equipament != null){
+            this.equipament.unequip();
             return;
         }
-        this.attackDamage -= this.equipament.attackDamage;
-        this.magicDamage -= this.equipament.magicDamage;
-        this.equipament.charOwner = null;
-        this.equipament = null;
+        System.out.println("Error");
     }
-    
-    public abstract void attack(Character enemy);
     
     public double getBounty(){
-        return (this.attackDamage + this.experience + this.level + this.magicDamage) * 0.5;
+        return (getAttackDamage() + getEnergyPoints() + getLevel() + getMagicDamage()) * 0.5;
     }
+    
+    public void getStatus(){
+        System.out.println("HP: " + getHealthPoints() + 
+                        "\nENERGY: " + getEnergyPoints() + 
+                        "\nATK: " + getAttackDamage() +
+                        "\nMAGIC: " + getMagicDamage() +
+                        "\nLEVEL: " + getLevel() +
+                        "\nEXP: " + getExperience());
+        
+        System.out.println("\nEQUIPAMENT:");
+        
+        if (equipament == null){
+            System.out.println("    No equipament");
+        }else{
+            System.out.println("   Name: "+equipament.getName() + "\n   Atk: "+equipament.getAttackDamage() + "\n   Magic "+equipament.getMagicDamage());
+        }
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAttackDamage() {
+        return attackDamage;
+    }
+
+    public int getMagicDamage() {
+        return magicDamage;
+    }
+
+    public double getHealthPoints() {
+        return healthPoints;
+    }
+
+    public int getEnergyPoints() {
+        return energyPoints;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public double getExperience() {
+        return experience;
+    }
+
+    public Equipament getEquipament() {
+        return equipament;
+    }
+
+    public void setAttackDamage(int attackDamage) {
+        this.attackDamage = attackDamage;
+    }
+
+    public void setMagicDamage(int magicDamage) {
+        this.magicDamage = magicDamage;
+    }
+
+    public void setHealthPoints(double healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+
+    public void setEnergyPoints(int energyPoints) {
+        this.energyPoints = energyPoints;
+    }
+
+    public void setExperience(double experience) {
+        this.experience += experience;
+    }
+    
+    
+    
+    
     
 }
