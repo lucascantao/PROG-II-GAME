@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package Game;
 
 /**
  *
@@ -17,6 +17,7 @@ public class Warrior extends Character{
             setEnergyPoints(100);
             setAttackDamage(8);
             setMagicDamage(0);
+            setAttackSpeed(1.1);
     }
     @Override
     public void attack(Character enemy){

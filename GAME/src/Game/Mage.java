@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package Game;
 
 /**
  *
@@ -15,6 +15,7 @@ public class Mage extends Character{
         super(name);
         setAttackDamage(2);
         setMagicDamage(12);
+        setAttackSpeed(0.8);
     }
     
     @Override

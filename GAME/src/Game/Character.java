@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package Game;
 
 /**
  *
@@ -14,6 +14,7 @@ public abstract class Character {
     protected String name;
     protected int attackDamage;
     protected int magicDamage;
+    protected double attackSpeed;
     
     protected double healthPoints;
     protected int energyPoints;
@@ -121,6 +122,18 @@ public abstract class Character {
     public void setExperience(double experience) {
         this.experience += experience;
     }
+
+    public double getAttackSpeed() {
+        return attackSpeed;
+    }
+
+    public void setAttackSpeed(double attackSpeed) {
+        this.attackSpeed = attackSpeed;
+    }
+    
+    
+    
+    
     
     
     
