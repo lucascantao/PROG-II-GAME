@@ -37,6 +37,13 @@ public class BatlleThread extends Thread{
                 c.attack(enemy);
             }
         }
+        if (c.getHealthPoints() > 0){
+            System.out.println("Vitória");
+            c.restoreHP(0.3); // restore 30% of character HP.
+        }else{
+            System.out.println("Derrota");
+            // TODO Defeat consequences
+        }
     }
     
 }
