@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Game;
+package Class;
 
 /**
  *
@@ -70,7 +70,13 @@ public abstract class Character {
             System.out.println("   Name: "+equipament.getName() + "\n   Atk: "+equipament.getAttackDamage() + "\n   Magic "+equipament.getMagicDamage());
         }
     }
-
+    
+    public void restoreHP(double percent){
+        this.healthPoints += this.healthPoints * percent;
+    }
+    
+    // ----GETTERSE AND SETTERS-----
+    
     public String getName() {
         return name;
     }
