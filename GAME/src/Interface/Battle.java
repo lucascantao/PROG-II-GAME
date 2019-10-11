@@ -7,39 +7,60 @@ package Interface;
  */
 
 import Class.Character;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author soldgear
  */
-public class Battle{
-    
-    private Character c;
-    private Character enemy;
-    public Battle(Character c, Character enemy){
-        this.c = c;
-        this.enemy = enemy;
-        
+public class Battle extends Thread{
+    private Character chr;
+    private Character adv;
+    private BattleListener listener;
+    public Battle(Character chr, Character adv){
+        this.chr = chr;
+        this.adv = adv;
     }
+    
+    public void setListener(BattleListener listener){
+        this.listener = listener;
+    }
+    
+    @Override
     public void run(){
-        
-        while(c.getHealthPoints() > 0 && enemy.getHealthPoints() > 0){
-        
-            if(c.getAttackSpeed() >= enemy.getAttackSpeed()){
-                c.attack(enemy);
-                enemy.attack(c);
+        System.out.println(chr.getName()+", HP: "+chr.getHealthPoints());
+        System.out.println(adv.getName()+", HP: "+adv.getHealthPoints());
+        while((chr.getHealthPoints() > 0) && (adv.getHealthPoints() > 0)){
+            
+            if(chr.getAttackSpeed() >= adv.getAttackSpeed()){
+                chr.attack(adv);
+                adv.attack(chr);
             }else{
-                enemy.attack(c);
-                c.attack(enemy);
+                adv.attack(chr);
+                chr.attack(adv);
             }
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {}
+            System.out.println("-----------------------");
+//            chr.getStatus();
+//            adv.getStatus();
+            listener.battleEnd();
+            listener.roundEnd(chr, adv);
         }
-        if (c.getHealthPoints() > 0){
+        if (chr.getHealthPoints() > 0){
             System.out.println("Vitória");
-            c.restoreHP(0.3); // restore 30% of character HP.
+//            chr.restoreHP(0.3); // restore 30% of chr HP.
         }else{
             System.out.println("Derrota");
             // TODO Defeat consequences
         }
+    }
+    
+    public static interface BattleListener {
+        public void battleEnd();
+        public void roundEnd(Character chr, Character adv);
     }
     
 }

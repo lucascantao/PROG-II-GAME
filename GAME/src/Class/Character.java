@@ -51,24 +51,17 @@ public abstract class Character {
     }
     
     public double getBounty(){
-        return (getAttackDamage() + getEnergyPoints() + getLevel() + getMagicDamage()) * 0.5;
+        return level + attackDamage + magicDamage;
     }
     
     public void getStatus(){
-        System.out.println("HP: " + getHealthPoints() + 
-                        "\nENERGY: " + getEnergyPoints() + 
-                        "\nATK: " + getAttackDamage() +
-                        "\nMAGIC: " + getMagicDamage() +
-                        "\nLEVEL: " + getLevel() +
-                        "\nEXP: " + getExperience());
-        
-        System.out.println("\nEQUIPAMENT:");
-        
-        if (equipament == null){
-            System.out.println("    No equipament");
-        }else{
-            System.out.println("   Name: "+equipament.getName() + "\n   Atk: "+equipament.getAttackDamage() + "\n   Magic "+equipament.getMagicDamage());
-        }
+        System.out.println("\nName:   " + getName());
+        System.out.println("\nHP:     " + getHealthPoints() + 
+                           "\nENERGY: " + getEnergyPoints() + 
+                           "\nATK:    " + getAttackDamage() +
+                           "\nMAGIC:  " + getMagicDamage() +
+                           "\nLEVEL:  " + getLevel() +
+                           "\nEXP:    " + getExperience());
     }
     
     public void restoreHP(double percent){

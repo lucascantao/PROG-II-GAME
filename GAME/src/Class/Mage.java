@@ -13,6 +13,7 @@ public class Mage extends Character{
     
     public Mage(String name){
         super(name);
+        setHealthPoints(200);
         setAttackDamage(2);
         setMagicDamage(12);
         setAttackSpeed(0.8);
@@ -20,9 +21,11 @@ public class Mage extends Character{
     
     @Override
     public void attack(Character enemy){
-        enemy.healthPoints -= (this.magicDamage) * this.level * 0.2;
-        if (enemy.healthPoints <= 0){
-            this.experience += enemy.getBounty();
+        double damage = getMagicDamage() + getLevel();
+        enemy.setHealthPoints(enemy.getHealthPoints() - damage);
+        System.out.println(enemy.getName()+"-> HP -"+damage);
+        if (enemy.getHealthPoints() <= 0){
+            this.setExperience(enemy.getBounty());
         }
     }
     

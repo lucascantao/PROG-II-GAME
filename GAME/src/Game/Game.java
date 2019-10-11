@@ -5,20 +5,13 @@
  */
 package Game;
 
-import Class.BloodSoul;
-import Class.Character;
-import Class.Equipament;
-import Class.Mage;
-import Class.MagicBook;
-import Class.Souls;
-import Class.Sword;
-import Class.Warrior;
-import Interface.MainWindow;
+import Class.*;
+import Interface.*;
 /**
  *
  * @author user
  */
-public class Game {
+class Game {
     
     Warrior warrior1 = new Warrior("Soldgear");
     Mage mage1 = new Mage("Necromant");
@@ -30,9 +23,11 @@ public class Game {
     
     public Game(){
         window = new MainWindow(warrior1);
-        window.update();
+        window.initDisplayComponents();
         window.setAdversary(mage1);
         window.setVisible(true);
     }
+    
+    
     
 }

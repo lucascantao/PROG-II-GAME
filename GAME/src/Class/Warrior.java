@@ -21,9 +21,11 @@ public class Warrior extends Character{
     }
     @Override
     public void attack(Character enemy){
-        enemy.healthPoints -= this.attackDamage * this.level * 0.2;
-        if (enemy.healthPoints <= 0){
-            this.experience += enemy.getBounty();
+        double damage = getAttackDamage() + getLevel();
+        enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
+        System.out.println(enemy.getName()+"-> HP -"+damage);
+        if (enemy.getHealthPoints() <= 0){
+            this.setExperience(enemy.getBounty());
         }
     } 
 }
