@@ -6,7 +6,7 @@ package Interface;
  * and open the template in the editor.
  */
 
-import Class.Character;
+import Cards.Character;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -51,6 +51,9 @@ public class Battle extends Thread{
             listener.battleEnd();
             listener.roundEnd(chr, adv);
         }
+        
+        MainWindow.running = false; //Variavel Estática
+        
         if (chr.getHealthPoints() > 0){
             System.out.println("Vitória");
 //            chr.restoreHP(0.3); // restore 30% of chr HP.

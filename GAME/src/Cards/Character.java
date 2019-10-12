@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package Cards;
 
 /**
  *
@@ -26,6 +26,12 @@ public abstract class Character {
     
     public Character(String name){
         this.name = name;
+        level = 1;
+        experience = 0.0;
+    }
+    
+    public Character(){
+        this.name = "Sem nome";
         level = 1;
         experience = 0.0;
     }

@@ -5,9 +5,10 @@
  */
 package Interface;
 
-import Class.Character;
+import Cards.Character;
 import java.awt.Canvas;
 import javax.swing.JFrame;
+import Game.MenuCreationControl;
 
 /**
  *
@@ -15,31 +16,37 @@ import javax.swing.JFrame;
  */
 public class MainWindow extends JFrame {
     
+    public static boolean running;
+    
     private Character chr;
     private Character adv;
     private Battle Bt;
+    
+    private MenuCreationControl creationControl;
     
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        running = false;
+        creationControl = new MenuCreationControl();
         initComponents();
 //        Bt = new Battle(this.chr, this.adv);
     }
     
     public MainWindow(Character chr, Character adv){
-        initComponents();
+        creationControl = new MenuCreationControl();
         this.chr = chr;
         this.adv = adv;
+        initComponents();
     }
     
     public void initDisplayComponents(){
-//        equipButton1.setText("Unequiped");
-        NameLabel.setText("Name: "+chr.getName());
-        AttackLabel.setText("Attack: "+chr.getAttackDamage());
-        MagicLabel.setText("magic: "+chr.getMagicDamage());
-        HealthLabel.setText("HP: "+chr.getHealthPoints());
-        ExpLabel.setText("XP: "+chr.getExperience());
+        NameLabel.setText("Name: -");
+        AttackLabel.setText("Attack: -");
+        MagicLabel.setText("magic: -");
+        HealthLabel.setText("HP: -");
+        ExpLabel.setText("XP: -");
     }
     
     public void updateDisplayComponents(){
@@ -64,7 +71,6 @@ public class MainWindow extends JFrame {
                 terminalEvents.setText(chr.getName() + ": " + chr.getHealthPoints() + ", " + adv.getName() + ": " + adv.getHealthPoints() + "\n" + terminalEvents.getText());
             }
         });
-        
         Bt.start();
     }
     
@@ -75,6 +81,12 @@ public class MainWindow extends JFrame {
     public void setAdversary(Character adv){
         this.adv = adv;
     }
+    
+    public void printTerminal(String print){
+        terminalEvents.setText(print+"\n"+terminalEvents.getText());
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -103,6 +115,12 @@ public class MainWindow extends JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         terminalEvents = new javax.swing.JTextArea();
         startButton = new javax.swing.JButton();
+        creationPanel = new javax.swing.JPanel();
+        createButton = new javax.swing.JButton();
+        nameCreationField = new javax.swing.JTextField();
+        nameCreationLabel = new javax.swing.JLabel();
+        MageCheckBox = new javax.swing.JCheckBox();
+        WarriorCheckBox = new javax.swing.JCheckBox();
 
         jTextField1.setText("jTextField1");
 
@@ -131,17 +149,12 @@ public class MainWindow extends JFrame {
             .addGroup(statsPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(AttackLabel)
-                            .addComponent(MagicLabel))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(statsPanelLayout.createSequentialGroup()
-                        .addGroup(statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ExpLabel)
-                            .addComponent(NameLabel)
-                            .addComponent(HealthLabel))
-                        .addContainerGap(102, Short.MAX_VALUE))))
+                    .addComponent(AttackLabel)
+                    .addComponent(MagicLabel)
+                    .addComponent(ExpLabel)
+                    .addComponent(NameLabel)
+                    .addComponent(HealthLabel))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         statsPanelLayout.setVerticalGroup(
             statsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,6 +274,68 @@ public class MainWindow extends JFrame {
             }
         });
 
+        creationPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        createButton.setText("CREATE");
+        createButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createButtonActionPerformed(evt);
+            }
+        });
+
+        nameCreationLabel.setText("Name:");
+
+        MageCheckBox.setText("Mage");
+        MageCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MageCheckBoxActionPerformed(evt);
+            }
+        });
+
+        WarriorCheckBox.setText("Warrior");
+        WarriorCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                WarriorCheckBoxActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout creationPanelLayout = new javax.swing.GroupLayout(creationPanel);
+        creationPanel.setLayout(creationPanelLayout);
+        creationPanelLayout.setHorizontalGroup(
+            creationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(creationPanelLayout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(createButton)
+                .addContainerGap(14, Short.MAX_VALUE))
+            .addGroup(creationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(nameCreationLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(creationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(nameCreationField)
+                    .addGroup(creationPanelLayout.createSequentialGroup()
+                        .addGroup(creationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(WarriorCheckBox)
+                            .addComponent(MageCheckBox))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        creationPanelLayout.setVerticalGroup(
+            creationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, creationPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(creationPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nameCreationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameCreationLabel))
+                .addGap(15, 15, 15)
+                .addComponent(WarriorCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(MageCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createButton)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -269,20 +344,29 @@ public class MainWindow extends JFrame {
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(interfacePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(creationPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(69, 69, 69))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                .addComponent(startButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addComponent(startButton)
+                        .addGap(29, 29, 29))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(creationPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addComponent(interfacePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -308,8 +392,55 @@ public class MainWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-        startBattle();
+        
+        if (running == false){
+            running = true;
+            if(this.chr == null){
+                printTerminal("No character selected. Please, set your character!");
+            }else{
+                startBattle();
+            }
+        }else{
+            printTerminal("Already running!");
+        }
     }//GEN-LAST:event_startButtonActionPerformed
+
+    private void MageCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MageCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MageCheckBoxActionPerformed
+
+    private void WarriorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WarriorCheckBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_WarriorCheckBoxActionPerformed
+
+    private void createButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createButtonActionPerformed
+        // TODO add your handling code here:
+        
+        if (nameCreationField.getText().equals("")){
+            printTerminal("Please, select the CHARACTER NAME");
+            return;
+        }
+        
+        if (WarriorCheckBox.isSelected() && MageCheckBox.isSelected()){
+            terminalEvents.setText("Please, select ONLY one of the options avaible\n"+terminalEvents.getText());
+            return;
+        }
+        
+        if (WarriorCheckBox.isSelected() == false && MageCheckBox.isSelected() == false){
+            terminalEvents.setText("Please, select AT LEAST one of the options avaible\n"+terminalEvents.getText());
+            return;
+        }
+        
+        if(WarriorCheckBox.isSelected()){
+            this.chr = creationControl.CreateWarrior(nameCreationField.getText());
+        }
+        
+        if(MageCheckBox.isSelected()){
+            this.chr = creationControl.CreateMage(nameCreationField.getText());
+        }
+        printTerminal("Character Created!");
+        updateDisplayComponents();
+    }//GEN-LAST:event_createButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -317,14 +448,20 @@ public class MainWindow extends JFrame {
     private javax.swing.JButton Deck;
     private javax.swing.JLabel ExpLabel;
     private javax.swing.JLabel HealthLabel;
+    private javax.swing.JCheckBox MageCheckBox;
     private javax.swing.JLabel MagicLabel;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JButton Sell;
+    private javax.swing.JCheckBox WarriorCheckBox;
+    private javax.swing.JButton createButton;
+    private javax.swing.JPanel creationPanel;
     private javax.swing.JPanel deckPanel;
     private javax.swing.JPanel interfacePanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel mainPanel;
+    private javax.swing.JTextField nameCreationField;
+    private javax.swing.JLabel nameCreationLabel;
     private javax.swing.JPanel recStatsPanel;
     private javax.swing.JLabel recentEquipName;
     private javax.swing.JPanel recentPanel;

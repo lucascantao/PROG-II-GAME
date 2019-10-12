@@ -5,7 +5,11 @@
  */
 package Game;
 
-import Class.*;
+import Cards.Warrior;
+import Cards.MagicBook;
+import Cards.Sword;
+import Cards.BloodSoul;
+import Cards.Mage;
 import Interface.*;
 /**
  *
@@ -13,18 +17,18 @@ import Interface.*;
  */
 class Game {
     
-    Warrior warrior1 = new Warrior("Soldgear");
+//    Warrior warrior1 = new Warrior("Soldgear");
     Mage mage1 = new Mage("Necromant");
-    BloodSoul soul1 = new BloodSoul("Breath of Vampire", 1, 8);
-    MagicBook book1 = new MagicBook("Snake Venom", 18);
-    Sword sword1 = new Sword("Drake Rath", 15);
+//    BloodSoul soul1 = new BloodSoul("Breath of Vampire", 1, 8);
+//    MagicBook book1 = new MagicBook("Snake Venom", 18);
+//    Sword sword1 = new Sword("Drake Rath", 15);
     
     MainWindow window;
     
     public Game(){
-        window = new MainWindow(warrior1, mage1);
+        window = new MainWindow();
 //        window.setCharacter(warrior1);
-//        window.setAdversary(mage1);
+        window.setAdversary(mage1);
         window.initDisplayComponents();
         window.setVisible(true);
     }

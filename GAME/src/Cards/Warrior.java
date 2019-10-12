@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package Cards;
 
 /**
  *
@@ -19,6 +19,16 @@ public class Warrior extends Character{
             setMagicDamage(0);
             setAttackSpeed(1.1);
     }
+    
+    public Warrior(){
+            super();
+            setHealthPoints(200);
+            setEnergyPoints(100);
+            setAttackDamage(8);
+            setMagicDamage(0);
+            setAttackSpeed(1.1);
+    }
+    
     @Override
     public void attack(Character enemy){
         double damage = getAttackDamage() + getLevel();

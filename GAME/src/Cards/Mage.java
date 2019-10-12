@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Class;
+package Cards;
 
 /**
  *
@@ -13,6 +13,14 @@ public class Mage extends Character{
     
     public Mage(String name){
         super(name);
+        setHealthPoints(200);
+        setAttackDamage(2);
+        setMagicDamage(12);
+        setAttackSpeed(0.8);
+    }
+    
+    public Mage(){
+        super();
         setHealthPoints(200);
         setAttackDamage(2);
         setMagicDamage(12);
