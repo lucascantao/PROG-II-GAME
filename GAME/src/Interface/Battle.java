@@ -29,8 +29,9 @@ public class Battle extends Thread{
     
     @Override
     public void run(){
-        System.out.println(chr.getName()+", HP: "+chr.getHealthPoints());
-        System.out.println(adv.getName()+", HP: "+adv.getHealthPoints());
+//        System.out.println(chr.getName()+", HP: "+chr.getHealthPoints());
+//        System.out.println(adv.getName()+", HP: "+adv.getHealthPoints());
+        
         while((chr.getHealthPoints() > 0) && (adv.getHealthPoints() > 0)){
             
             if(chr.getAttackSpeed() >= adv.getAttackSpeed()){
@@ -42,7 +43,8 @@ public class Battle extends Thread{
             }
             try {
                 Thread.sleep(1000);
-            } catch (InterruptedException ex) {}
+            } catch (InterruptedException ex) {
+            }
             System.out.println("-----------------------");
 //            chr.getStatus();
 //            adv.getStatus();

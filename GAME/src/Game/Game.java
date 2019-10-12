@@ -9,7 +9,7 @@ import Class.*;
 import Interface.*;
 /**
  *
- * @author user
+ * @author soldgear
  */
 class Game {
     
@@ -22,9 +22,10 @@ class Game {
     MainWindow window;
     
     public Game(){
-        window = new MainWindow(warrior1);
+        window = new MainWindow(warrior1, mage1);
+//        window.setCharacter(warrior1);
+//        window.setAdversary(mage1);
         window.initDisplayComponents();
-        window.setAdversary(mage1);
         window.setVisible(true);
     }
     

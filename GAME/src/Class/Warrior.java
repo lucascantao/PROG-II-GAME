@@ -23,7 +23,6 @@ public class Warrior extends Character{
     public void attack(Character enemy){
         double damage = getAttackDamage() + getLevel();
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
-        System.out.println(enemy.getName()+"-> HP -"+damage);
         if (enemy.getHealthPoints() <= 0){
             this.setExperience(enemy.getBounty());
         }
