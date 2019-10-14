@@ -11,7 +11,7 @@ import Cards.*;
  *
  * @author soldgear
  */
-public class MenuCreationControl {
+public class CreationControl {
     
 //    Warrior warrior1;
 //    Mage mage1;
