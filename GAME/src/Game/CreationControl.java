@@ -13,19 +13,16 @@ import Cards.*;
  */
 public class CreationControl {
     
-//    Warrior warrior1;
-//    Mage mage1;
-    BloodSoul soul1 = new BloodSoul("Breath of Vampire", 1, 8);
-    MagicBook book1 = new MagicBook("Snake Venom", 18);
-    Sword sword1 = new Sword("Drake Rath", 15);
-    
-    
     public Warrior CreateWarrior(String name){
         return new Warrior(name);
     }
     
     public Mage CreateMage(String name){
         return new Mage(name);
+    }
+    
+    public Assassin CreateAssassin(String name){
+        return new Assassin(name);
     }
     
     

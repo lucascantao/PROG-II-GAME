@@ -12,11 +12,14 @@ package Interface;
 
 import Game.CreationControl;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class CreationWindow extends JFrame {
 
     private CreationControl creationControl;
     private MainWindow window;
+    
+    private int check = 0;
     
     /**
      * Creates new form CreationWindow
@@ -44,6 +47,7 @@ public class CreationWindow extends JFrame {
         warriorCheckBox = new javax.swing.JCheckBox();
         mageCheckBox = new javax.swing.JCheckBox();
         createCharButton = new javax.swing.JButton();
+        assassinCheckBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +78,13 @@ public class CreationWindow extends JFrame {
             }
         });
 
+        assassinCheckBox.setText("Assassin");
+        assassinCheckBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                assassinCheckBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout classPanelLayout = new javax.swing.GroupLayout(classPanel);
         classPanel.setLayout(classPanelLayout);
         classPanelLayout.setHorizontalGroup(
@@ -84,6 +95,7 @@ public class CreationWindow extends JFrame {
                     .addComponent(createCharButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(classPanelLayout.createSequentialGroup()
                         .addGroup(classPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(assassinCheckBox)
                             .addComponent(warriorCheckBox)
                             .addComponent(mageCheckBox))
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -96,7 +108,9 @@ public class CreationWindow extends JFrame {
                 .addComponent(warriorCheckBox)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(mageCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(assassinCheckBox)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(createCharButton)
                 .addContainerGap())
         );
@@ -148,17 +162,28 @@ public class CreationWindow extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void warriorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warriorCheckBoxActionPerformed
-        // TODO add your handling code here:
+        if (warriorCheckBox.isSelected()){
+            check += 1;
+        }else{
+            check -= 1;
+            
+        }
     }//GEN-LAST:event_warriorCheckBoxActionPerformed
 
     private void createCharButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createCharButtonActionPerformed
         
-        if (warriorCheckBox.isSelected() && mageCheckBox.isSelected()){
-            System.out.println("ERROR");
+        if (nameField.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter character name.");
             return;
         }
-        if (warriorCheckBox.isSelected() == false && mageCheckBox.isSelected() == false){
-            System.out.println("ERROR");
+        
+        if (check == 0){
+            JOptionPane.showMessageDialog(null, "Please select at least one of the available classes.");
+            return;
+        }
+        
+        if (check > 1){
+            JOptionPane.showMessageDialog(null, "Please select only one of the available classes.");
             return;
         }
         
@@ -168,17 +193,37 @@ public class CreationWindow extends JFrame {
         if (mageCheckBox.isSelected())
             window.setCharacter(creationControl.CreateMage(nameField.getText()));
         
+        if (assassinCheckBox.isSelected())
+            window.setCharacter(creationControl.CreateAssassin(nameField.getText()));
+        
+        window.printTerminal("Character Created!");
+        
         this.setVisible(false);
         
     }//GEN-LAST:event_createCharButtonActionPerformed
 
     private void mageCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mageCheckBoxActionPerformed
-        // TODO add your handling code here:
+        if (mageCheckBox.isSelected()){
+            check += 1;
+        }else{
+            check -= 1;
+        }
+        
     }//GEN-LAST:event_mageCheckBoxActionPerformed
+
+    private void assassinCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assassinCheckBoxActionPerformed
+        if (assassinCheckBox.isSelected()){
+            check += 1;
+        }else{
+            check -= 1;
+        }
+        
+    }//GEN-LAST:event_assassinCheckBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel MainPanel;
+    private javax.swing.JCheckBox assassinCheckBox;
     private javax.swing.JPanel classPanel;
     private javax.swing.JButton createCharButton;
     private javax.swing.JCheckBox mageCheckBox;

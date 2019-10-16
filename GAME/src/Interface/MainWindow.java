@@ -9,12 +9,16 @@ import Cards.Character;
 import java.awt.Canvas;
 import java.awt.Color;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import Game.Collection;
 
 /**
  *
  * @author soldgear
  */
 public class MainWindow extends JFrame {
+    
+    private Collection colection;
     
     public static boolean running;
     
@@ -42,6 +46,8 @@ public class MainWindow extends JFrame {
     }
     
     public void initDisplayComponents(){
+        
+        // ---- LABELS ----
         NameLabel.setText("Name: -");
         NameLabel.setForeground(Color.white);
         AttackLabel.setText("Attack: -");
@@ -52,27 +58,40 @@ public class MainWindow extends JFrame {
         HealthLabel.setForeground(Color.green);
         ExpLabel.setText("XP: -");
         ExpLabel.setForeground(new Color(180,180,180));
+        WeaponLabel.setForeground(new Color(200,200,200));
+        ArmorLabel.setForeground(new Color(200,200,200));
+        SoulLabel.setForeground(new Color(200,200,200));
         
+        // ---- PANELS ----
+        VersusPanel.setBackground(new Color(100,100,100));
+        ControlsPanel.setBackground(new Color(100,100,100));
         interfacePanel.setBackground(new Color(50,50,50));
-        
         mainPanel.setBackground(new Color(40,40,40));
-        
         recStatsPanel.setBackground(new Color(100,100,100));
-        
         statsPanel.setBackground(new Color(60,60,60));
         deckPanel.setBackground(new Color(60,60,60));
         recentPanel.setBackground(new Color(60,60,60));
+        
+        // ---- BUTTONS ----
+        startButton.setBackground(new Color(255,130,0));
+        createCharacterButton.setBackground(new Color(255,255,0));
+        
         
         
     }
     
     public void updateDisplayComponents(){
         
-        NameLabel.setText("Name: "+chr.getName());
-        AttackLabel.setText("Attack: "+chr.getAttackDamage());
-        MagicLabel.setText("magic: "+chr.getMagicDamage());
-        HealthLabel.setText("HP: "+chr.getHealthPoints());
-        ExpLabel.setText("XP: "+chr.getExperience());
+        if (chr != null)
+            NameLabel.setText("Name: "+chr.getName());
+            AttackLabel.setText("Attack: "+chr.getAttackDamage());
+            MagicLabel.setText("magic: "+chr.getMagicDamage());
+            HealthLabel.setText("HP: "+chr.getHealthPoints());
+            ExpLabel.setText("XP: "+chr.getExperience());
+            titleCharLabel.setText(chr.getName());
+        
+        if (adv != null)
+            titleAdvLabel.setText(adv.getName());
     }
     
     public void startBattle(){
@@ -130,10 +149,19 @@ public class MainWindow extends JFrame {
         recStatsPanel = new javax.swing.JPanel();
         recentEquipName = new javax.swing.JLabel();
         deckPanel = new javax.swing.JPanel();
+        WeaponLabel = new javax.swing.JLabel();
+        ArmorLabel = new javax.swing.JLabel();
+        SoulLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         terminalEvents = new javax.swing.JTextArea();
-        startButton = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        ControlsPanel = new javax.swing.JPanel();
         createCharacterButton = new javax.swing.JButton();
+        startButton = new javax.swing.JButton();
+        VersusPanel = new javax.swing.JPanel();
+        titleCharLabel = new javax.swing.JLabel();
+        titleAdvLabel = new javax.swing.JLabel();
+        VSLabel = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -183,7 +211,7 @@ public class MainWindow extends JFrame {
                 .addComponent(MagicLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ExpLabel)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         recentPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -240,17 +268,40 @@ public class MainWindow extends JFrame {
                 .addGap(12, 12, 12))
         );
 
-        deckPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        deckPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Character Deck", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(180, 180, 180))); // NOI18N
+        deckPanel.setForeground(new java.awt.Color(180, 180, 180));
+
+        WeaponLabel.setText("Weapon");
+        WeaponLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        ArmorLabel.setText("Armor");
+        ArmorLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        SoulLabel.setText("Soul");
+        SoulLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout deckPanelLayout = new javax.swing.GroupLayout(deckPanel);
         deckPanel.setLayout(deckPanelLayout);
         deckPanelLayout.setHorizontalGroup(
             deckPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(deckPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(WeaponLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(ArmorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(SoulLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         deckPanelLayout.setVerticalGroup(
             deckPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deckPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(deckPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(SoulLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ArmorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(WeaponLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout interfacePanelLayout = new javax.swing.GroupLayout(interfacePanel);
@@ -281,12 +332,18 @@ public class MainWindow extends JFrame {
         terminalEvents.setRows(5);
         jScrollPane1.setViewportView(terminalEvents);
 
-        startButton.setText("START");
-        startButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startButtonActionPerformed(evt);
-            }
-        });
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 172, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 51, Short.MAX_VALUE)
+        );
+
+        ControlsPanel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         createCharacterButton.setText("CREATE");
         createCharacterButton.addActionListener(new java.awt.event.ActionListener() {
@@ -295,22 +352,81 @@ public class MainWindow extends JFrame {
             }
         });
 
+        startButton.setText("START");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout ControlsPanelLayout = new javax.swing.GroupLayout(ControlsPanel);
+        ControlsPanel.setLayout(ControlsPanelLayout);
+        ControlsPanelLayout.setHorizontalGroup(
+            ControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlsPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(createCharacterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        ControlsPanelLayout.setVerticalGroup(
+            ControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(ControlsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(ControlsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(createCharacterButton)
+                    .addComponent(startButton))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        VersusPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        titleCharLabel.setText("CHARACTER");
+
+        titleAdvLabel.setText("ADVERSARY");
+
+        VSLabel.setText("VS");
+
+        javax.swing.GroupLayout VersusPanelLayout = new javax.swing.GroupLayout(VersusPanel);
+        VersusPanel.setLayout(VersusPanelLayout);
+        VersusPanelLayout.setHorizontalGroup(
+            VersusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VersusPanelLayout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(titleCharLabel)
+                .addGap(60, 60, 60)
+                .addComponent(VSLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titleAdvLabel)
+                .addGap(56, 56, 56))
+        );
+        VersusPanelLayout.setVerticalGroup(
+            VersusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(VersusPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(VersusPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(titleCharLabel)
+                    .addComponent(titleAdvLabel)
+                    .addComponent(VSLabel))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(interfacePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(interfacePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(createCharacterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(startButton, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 401, Short.MAX_VALUE)
+                            .addComponent(ControlsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(VersusPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -318,13 +434,13 @@ public class MainWindow extends JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(mainPanelLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(startButton)
-                        .addGap(18, 18, 18)
-                        .addComponent(createCharacterButton)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                    .addComponent(VersusPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ControlsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(interfacePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -351,15 +467,17 @@ public class MainWindow extends JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         
+        if(this.chr == null){
+                JOptionPane.showMessageDialog(null, "No character selected. Please, set your character!");
+                return;
+        }
+        
         if (running == false){
             running = true;
-            if(this.chr == null){
-                printTerminal("No character selected. Please, set your character!");
-            }else{
-                startBattle();
-            }
+            startBattle();
+            
         }else{
-            printTerminal("Already running!");
+            JOptionPane.showMessageDialog(null, "Already Runnig!");
         }
     }//GEN-LAST:event_startButtonActionPerformed
 
@@ -369,16 +487,23 @@ public class MainWindow extends JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ArmorLabel;
     private javax.swing.JLabel AttackLabel;
+    private javax.swing.JPanel ControlsPanel;
     private javax.swing.JButton Deck;
     private javax.swing.JLabel ExpLabel;
     private javax.swing.JLabel HealthLabel;
     private javax.swing.JLabel MagicLabel;
     private javax.swing.JLabel NameLabel;
     private javax.swing.JButton Sell;
+    private javax.swing.JLabel SoulLabel;
+    private javax.swing.JLabel VSLabel;
+    private javax.swing.JPanel VersusPanel;
+    private javax.swing.JLabel WeaponLabel;
     private javax.swing.JButton createCharacterButton;
     private javax.swing.JPanel deckPanel;
     private javax.swing.JPanel interfacePanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JPanel mainPanel;
@@ -388,5 +513,7 @@ public class MainWindow extends JFrame {
     private javax.swing.JButton startButton;
     private javax.swing.JPanel statsPanel;
     private javax.swing.JTextArea terminalEvents;
+    private javax.swing.JLabel titleAdvLabel;
+    private javax.swing.JLabel titleCharLabel;
     // End of variables declaration//GEN-END:variables
 }

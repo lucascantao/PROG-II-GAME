@@ -16,13 +16,8 @@ import Interface.*;
  * @author soldgear
  */
 class Game {
-    
-//    Warrior warrior1 = new Warrior("Soldgear");
-    Mage mage1 = new Mage("Necromant");
-//    BloodSoul soul1 = new BloodSoul("Breath of Vampire", 1, 8);
-//    MagicBook book1 = new MagicBook("Snake Venom", 18);
-//    Sword sword1 = new Sword("Drake Rath", 15);
-    
+
+    Mage mage1 = new Mage("Necromant");    
     MainWindow window;
     
     public Game(){

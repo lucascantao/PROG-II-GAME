@@ -13,6 +13,7 @@ public class Warrior extends Character{
     
     public Warrior(String name){
             super(name);
+            setType("WARRIOR");
             setHealthPoints(200);
             setEnergyPoints(100);
             setAttackDamage(8);
@@ -34,6 +35,7 @@ public class Warrior extends Character{
         double damage = getAttackDamage() + getLevel();
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
         if (enemy.getHealthPoints() <= 0){
+            enemy.setHealthPoints(0);
             this.setExperience(enemy.getBounty());
         }
     } 

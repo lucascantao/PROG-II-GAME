@@ -11,6 +11,8 @@ package Cards;
  */
 public abstract class Character {
     
+    protected String type;
+    
     protected String name;
     protected int attackDamage;
     protected int magicDamage;
@@ -135,6 +137,20 @@ public abstract class Character {
     public void setAttackSpeed(double attackSpeed) {
         this.attackSpeed = attackSpeed;
     }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
     
     
     

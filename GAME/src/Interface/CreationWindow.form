@@ -108,6 +108,7 @@
                           <Component id="createCharButton" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="assassinCheckBox" min="-2" max="-2" attributes="0"/>
                                   <Component id="warriorCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="mageCheckBox" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -125,7 +126,9 @@
                       <Component id="warriorCheckBox" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="mageCheckBox" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="102" max="32767" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="assassinCheckBox" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="76" max="32767" attributes="0"/>
                       <Component id="createCharButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -155,6 +158,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createCharButtonActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="assassinCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Assassin"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="assassinCheckBoxActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
