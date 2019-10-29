@@ -5,25 +5,25 @@
  */
 package Game;
 
-import Cards.Warrior;
-import Cards.MagicBook;
-import Cards.Sword;
-import Cards.BloodSoul;
 import Cards.Mage;
 import Interface.*;
+import Npc.BlackMage;
+import Npc.Drake;
 /**
  *
  * @author soldgear
  */
 class Game {
-
-    Mage mage1 = new Mage("Necromant");    
+    
+    Drake drake = new Drake("Drake", 2);
+    BlackMage black_mage = new BlackMage("Black Mage", 7);
+    Mage mage1 = new Mage("Black Mage"); 
     MainWindow window;
     
     public Game(){
         window = new MainWindow();
 //        window.setCharacter(warrior1);
-        window.setAdversary(mage1);
+        window.setAdversary(drake);
         window.initDisplayComponents();
         window.setVisible(true);
     }

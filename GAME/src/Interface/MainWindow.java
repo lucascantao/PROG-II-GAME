@@ -86,7 +86,7 @@ public class MainWindow extends JFrame {
             NameLabel.setText("Name: "+chr.getName());
             AttackLabel.setText("Attack: "+chr.getAttackDamage());
             MagicLabel.setText("magic: "+chr.getMagicDamage());
-            HealthLabel.setText("HP: "+chr.getHealthPoints());
+            HealthLabel.setText("HP: "+(int)chr.getHealthPoints());
             ExpLabel.setText("XP: "+chr.getExperience());
             titleCharLabel.setText(chr.getName());
         
@@ -104,7 +104,7 @@ public class MainWindow extends JFrame {
 
             @Override
             public void roundEnd(Character chr, Character adv) {
-                terminalEvents.setText(chr.getName() + ": " + chr.getHealthPoints() + ", " + adv.getName() + ": " + adv.getHealthPoints() + "\n" + terminalEvents.getText());
+                terminalEvents.setText(chr.getName() + ": " + (int)chr.getHealthPoints() + ", " + adv.getName() + ": " + (int)adv.getHealthPoints() + "\n" + terminalEvents.getText());
             }
         });
         Bt.start();

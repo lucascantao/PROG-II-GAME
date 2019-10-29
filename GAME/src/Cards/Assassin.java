@@ -34,9 +34,10 @@ public class Assassin extends Character{
     public void attack(Character enemy) {
         double damage = getAttackDamage() + getLevel() + (enemy.getHealthPoints() * getLetality());
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
-        if (enemy.getHealthPoints() <= 0)
+        if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);
             this.setExperience(enemy.getBounty());
+        }
     }
 
     public void setLetality(double Letality) {

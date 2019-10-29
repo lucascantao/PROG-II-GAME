@@ -18,7 +18,7 @@ public class Drake extends Enemy{
     
     public Drake(String name, int level) {
         super(name, level);
-        rath = 1.0;
+        rath = 0.05;
         setHealthPoints(60 + (level*5));
         setMagicDamage(7);
         setAttackDamage(2);
@@ -30,15 +30,20 @@ public class Drake extends Enemy{
 
     @Override
     public void attack(Character enemy) {
-        double damage = getAttackDamage() + getLevel() + (enemy.getHealthPoints()) + getRath();
+        double damage = getAttackDamage() + getLevel() + (enemy.getHealthPoints() * getRath());
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
         if (enemy.getHealthPoints() <= 0)
             this.setExperience(enemy.getBounty());
-        rath += 0.2;
+        rath += 0.05;
     }
 
     public double getRath() {
         return rath;
     }
+
+//    @Override
+//    public double getEnemyBounty() {
+//        return 12.5;
+//    }
     
 }

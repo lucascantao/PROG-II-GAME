@@ -29,5 +29,7 @@ public abstract class Enemy extends Character{
     public Souls getSoul() {
         return soul;
     }
+   
+//    public abstract double getEnemyBounty();
 
 }
