@@ -95,7 +95,7 @@ public class MainWindow extends JFrame {
     }
     
     public void startBattle(){
-        Bt = new Battle(this.chr, this.adv);
+        Bt = new Battle(this, this.chr, this.adv);
         Bt.setListener(new Battle.BattleListener() {
             @Override
             public void battleEnd() {
@@ -467,8 +467,8 @@ public class MainWindow extends JFrame {
 
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         
-        if(this.chr == null){
-                JOptionPane.showMessageDialog(null, "No character selected. Please, set your character!");
+        if(this.chr == null || this.adv == null){
+                JOptionPane.showMessageDialog(null, "No Character or Enemy selected. Please, set your character/Enemy!");
                 return;
         }
         

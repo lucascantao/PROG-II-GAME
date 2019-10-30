@@ -17,6 +17,7 @@ public class Assassin extends Character{
         super(name);
         setType("ASSASSIN");
         setHealthPoints(80);
+        setMaxHP(80);
         setEnergyPoints(60);
         setAttackDamage(12);
         setMagicDamage(0);

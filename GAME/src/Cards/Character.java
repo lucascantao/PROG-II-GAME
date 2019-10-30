@@ -17,13 +17,11 @@ public abstract class Character {
     protected int attackDamage;
     protected int magicDamage;
     protected double attackSpeed;
-    
     protected double healthPoints;
+    protected double maxHP;
     protected int energyPoints;
-    
     protected int level;
     protected double experience;
-    
     protected Equipament equipament;
     
     public Character(String name){
@@ -39,6 +37,10 @@ public abstract class Character {
     }
     
     public abstract void attack(Character enemy);
+    
+    public void restoreHP(){
+        this.healthPoints = this.maxHP;
+    }
     
     public void setEquipmament(Equipament e){ // Habilitar Equipamento e atualizar Status
         if(this.equipament == null){
@@ -148,6 +150,10 @@ public abstract class Character {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public void setMaxHP(double maxHP) {
+        this.maxHP = maxHP;
     }
     
     

@@ -15,10 +15,12 @@ import java.util.logging.Logger;
  * @author soldgear
  */
 public class Battle extends Thread{
+    private MainWindow Window;
     private Character chr;
     private Character adv;
     private BattleListener listener;
-    public Battle(Character chr, Character adv){
+    public Battle(MainWindow Window, Character chr, Character adv){
+        this.Window = Window;
         this.chr = chr;
         this.adv = adv;
     }
@@ -55,10 +57,12 @@ public class Battle extends Thread{
         MainWindow.running = false; //Variavel Estática
         
         if (chr.getHealthPoints() > 0){
-            System.out.println("Vitória");
-//            chr.restoreHP(0.3); // restore 30% of chr HP.
+            chr.restoreHP(); // restore 30% of chr HP.
+            Window.updateDisplayComponents();
+            Window.printTerminal("Vitória!  ***LIFE RESTORED!***\n");
+            Window.setAdversary(null);
         }else{
-            System.out.println("Derrota");
+            Window.printTerminal("Derrota");
             // TODO Defeat consequences
         }
     }

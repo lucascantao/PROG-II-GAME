@@ -15,6 +15,7 @@ public class Mage extends Character{
         super(name);
         setType("MAGE");
         setHealthPoints(150);
+        setMaxHP(150);
         setAttackDamage(2);
         setMagicDamage(12);
         setAttackSpeed(0.8);
@@ -23,6 +24,7 @@ public class Mage extends Character{
     public Mage(){
         super();
         setHealthPoints(200);
+        setMaxHP(150);
         setAttackDamage(2);
         setMagicDamage(12);
         setAttackSpeed(0.8);

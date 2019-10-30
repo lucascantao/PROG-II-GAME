@@ -15,6 +15,7 @@ public class Warrior extends Character{
             super(name);
             setType("WARRIOR");
             setHealthPoints(200);
+            setMaxHP(200);
             setEnergyPoints(100);
             setAttackDamage(8);
             setMagicDamage(0);
@@ -24,6 +25,7 @@ public class Warrior extends Character{
     public Warrior(){
             super();
             setHealthPoints(200);
+            setMaxHP(200);
             setEnergyPoints(100);
             setAttackDamage(8);
             setMagicDamage(0);
