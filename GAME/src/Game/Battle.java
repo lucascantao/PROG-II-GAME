@@ -1,4 +1,4 @@
-package Interface;
+package Game;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -7,6 +7,7 @@ package Interface;
  */
 
 import Cards.Character;
+import Interface.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,20 +48,20 @@ public class Battle extends Thread{
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
-            System.out.println("-----------------------");
 //            chr.getStatus();
 //            adv.getStatus();
-            listener.battleEnd();
-            listener.roundEnd(chr, adv);
+            listener.turnEnd();
         }
         
         MainWindow.running = false; //Variavel Estática
         
         if (chr.getHealthPoints() > 0){
             chr.restoreHP(); // restore 30% of chr HP.
-            Window.updateDisplayComponents();
-            Window.printTerminal("Vitória!  ***LIFE RESTORED!***\n");
+            listener.dropItem();
+            Window.printTerminal("Vitória! Parte da vida restaurada.\n");
             Window.setAdversary(null);
+            Window.updateDisplayComponents();
+            listener.battleEnd();
         }else{
             Window.printTerminal("Derrota");
             // TODO Defeat consequences
@@ -68,8 +69,9 @@ public class Battle extends Thread{
     }
     
     public static interface BattleListener {
+        public void turnEnd();
         public void battleEnd();
-        public void roundEnd(Character chr, Character adv);
+        public void dropItem();
     }
     
 }

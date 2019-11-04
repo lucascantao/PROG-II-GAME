@@ -7,7 +7,7 @@ package Interface;
 
 /**
  *
- * @author user
+ * @author soldgear
  */
 
 import Game.CreationControl;
@@ -18,8 +18,6 @@ public class CreationWindow extends JFrame {
 
     private CreationControl creationControl;
     private MainWindow window;
-    
-    private int check = 0;
     
     /**
      * Creates new form CreationWindow
@@ -163,10 +161,8 @@ public class CreationWindow extends JFrame {
 
     private void warriorCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_warriorCheckBoxActionPerformed
         if (warriorCheckBox.isSelected()){
-            check += 1;
-        }else{
-            check -= 1;
-            
+            this.mageCheckBox.setSelected(false);
+            this.assassinCheckBox.setSelected(false);
         }
     }//GEN-LAST:event_warriorCheckBoxActionPerformed
 
@@ -177,13 +173,8 @@ public class CreationWindow extends JFrame {
             return;
         }
         
-        if (check == 0){
-            JOptionPane.showMessageDialog(null, "Please select at least one of the available classes.");
-            return;
-        }
-        
-        if (check > 1){
-            JOptionPane.showMessageDialog(null, "Please select only one of the available classes.");
+        if ((mageCheckBox.isSelected() || assassinCheckBox.isSelected() || warriorCheckBox.isSelected()) == false){
+            JOptionPane.showMessageDialog(null, "Please, select at least one of the options.");
             return;
         }
         
@@ -197,25 +188,23 @@ public class CreationWindow extends JFrame {
             window.setCharacter(creationControl.CreateAssassin(nameField.getText()));
         
         window.printTerminal("Character Created!");
-        
+        window.setCreationButtonDisabled();
         this.setVisible(false);
         
     }//GEN-LAST:event_createCharButtonActionPerformed
 
     private void mageCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mageCheckBoxActionPerformed
         if (mageCheckBox.isSelected()){
-            check += 1;
-        }else{
-            check -= 1;
+           this.warriorCheckBox.setSelected(false);
+           this.assassinCheckBox.setSelected(false);
         }
         
     }//GEN-LAST:event_mageCheckBoxActionPerformed
 
     private void assassinCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assassinCheckBoxActionPerformed
         if (assassinCheckBox.isSelected()){
-            check += 1;
-        }else{
-            check -= 1;
+            this.warriorCheckBox.setSelected(false);
+            this.mageCheckBox.setSelected(false);
         }
         
     }//GEN-LAST:event_assassinCheckBoxActionPerformed

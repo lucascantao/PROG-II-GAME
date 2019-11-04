@@ -39,7 +39,10 @@ public abstract class Character {
     public abstract void attack(Character enemy);
     
     public void restoreHP(){
-        this.healthPoints = this.maxHP;
+        this.healthPoints += this.maxHP * 0.3;
+        if (this.healthPoints > this.maxHP) {
+            this.healthPoints = this.maxHP;
+        }
     }
     
     public void setEquipmament(Equipament e){ // Habilitar Equipamento e atualizar Status

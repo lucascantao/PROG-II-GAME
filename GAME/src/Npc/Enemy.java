@@ -6,6 +6,7 @@
 package Npc;
 
 import Cards.Character;
+import Cards.Equipament;
 import Cards.Souls;
 
 /**
@@ -13,7 +14,6 @@ import Cards.Souls;
  * @author soldgear
  */
 public abstract class Enemy extends Character{
-    
     private Souls soul;
     private String ID;
     
@@ -29,7 +29,6 @@ public abstract class Enemy extends Character{
     public Souls getSoul() {
         return soul;
     }
-   
 //    public abstract double getEnemyBounty();
 
 }

@@ -36,6 +36,8 @@ public class Drake extends Enemy{
             this.setExperience(enemy.getBounty());
         rath += 0.05;
     }
+    
+    
 
     public double getRath() {
         return rath;

@@ -23,7 +23,7 @@ class Game {
     public Game(){
         window = new MainWindow();
 //        window.setCharacter(warrior1);
-        window.setAdversary(drake);
+//        window.setAdversary(drake);
         window.initDisplayComponents();
         window.setVisible(true);
     }
