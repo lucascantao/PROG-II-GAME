@@ -1,8 +1,8 @@
 
 package Npc;
 
-import Objects.Character;
-import Objects.Classe;
+import Objects.Classes.Character;
+import Objects.Classes.Classe;
 
 public class BlackMage extends Npc{
 

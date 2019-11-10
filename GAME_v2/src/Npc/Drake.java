@@ -4,8 +4,7 @@
  * and open the template in the editor.
  */
 package Npc;
-import Objects.BloodSoul;
-import Objects.Character;
+import Objects.Classes.Character;
 /**
  *
  * @author soldgear

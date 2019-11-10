@@ -6,7 +6,7 @@ package Game;
  * and open the template in the editor.
  */
 
-import Objects.Character;
+import Objects.Classes.Character;
 import Interface.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;

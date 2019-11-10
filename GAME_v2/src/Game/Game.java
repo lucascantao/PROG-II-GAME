@@ -2,7 +2,7 @@
 package Game;
 
 import Interface2.StatusWindow;
-import Objects.Mage;
+import Objects.Classes.Mage;
 import Interface.*;
 import Npc.BlackMage;
 import Npc.Drake;

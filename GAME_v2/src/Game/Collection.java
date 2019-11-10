@@ -1,11 +1,10 @@
 
 package Game;
-import Objects.Equipament;
-import Objects.Sword;
-import Objects.BloodSoul;
-import Objects.MagicBook;
+import Objects.Equipments.Equipment;
+import Objects.Equipments.Sword;
+import Objects.Equipments.MagicBook;
 import Npc.*;
-import Objects.Staff;
+import Objects.Equipments.Staff;
 import java.util.Random;
 
 import java.util.LinkedList;
@@ -20,14 +19,14 @@ public class Collection {
         Sword sword, longSword, divineBlade;
         Staff staff, darkStaff;
         
-        LinkedList<Equipament> equipments;
+        LinkedList<Equipment> equipments;
         LinkedList<Npc> enemys;
         Random r;
     
     public Collection(){
         
         r = new Random();
-        equipments = new LinkedList<Equipament>();
+        equipments = new LinkedList<Equipment>();
         enemys = new LinkedList<Npc>();
         
         // EQUIPAMENTOS
@@ -60,11 +59,11 @@ public class Collection {
         enemys.add(blackDrake);
     }
     
-    public Equipament getDropItem(){
+    public Equipment getDropItem(){
         return equipments.get(r.nextInt(2));
     }
     
-    public LinkedList<Equipament> getEquipamentList(){
+    public LinkedList<Equipment> getEquipamentList(){
         return this.equipments;
     }
     

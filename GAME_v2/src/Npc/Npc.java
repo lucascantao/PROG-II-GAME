@@ -5,16 +5,14 @@
  */
 package Npc;
 
-import Objects.Character;
-import Objects.Equipament;
-import Objects.Souls;
+import Objects.Classes.Character;
+import Objects.Equipments.Equipment;
 
 /**
  *
  * @author soldgear
  */
 public abstract class Npc extends Character{
-    private Souls soul;
     private String ID;
     
     public Npc(String name, int level){
@@ -22,13 +20,6 @@ public abstract class Npc extends Character{
         setLevel(level);
     }
 
-    public void setSoul(Souls soul) {
-        this.soul = soul;
-    }
-
-    public Souls getSoul() {
-        return soul;
-    }
 //    public abstract double getEnemyBounty();
 
 }

@@ -1,4 +1,4 @@
-package Objects;
+package Objects.Classes;
 
 public class Warrior extends Character{
     

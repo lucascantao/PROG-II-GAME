@@ -1,6 +1,6 @@
 package Interface2;
 
-import Objects.Character;
+import Objects.Classes.Character;
 import Objects.Region;
 
 public class StatusWindow extends javax.swing.JFrame {
@@ -8,7 +8,9 @@ public class StatusWindow extends javax.swing.JFrame {
     private final MapWindow map;
     private final CCWindow ccw;
     private final ShopWindow shop;
-    private Character chr;
+    private final BagWindow bag;
+    private final ProfileWindow prof;
+    private Character chr = null;
     private Region current_region;
     
     public StatusWindow() {
@@ -17,9 +19,12 @@ public class StatusWindow extends javax.swing.JFrame {
         setLocation(250, 200);
         setTitle("Clan Quest v2.0");
         setVisible(false);
+        BagButton.setEnabled(false);
         map = new MapWindow(this);
         ccw = new CCWindow(this);
         shop = new ShopWindow(this);
+        bag = new BagWindow(this, chr);
+        prof = new ProfileWindow(this);
         ccw.setVisible(true);
     }
     
@@ -29,25 +34,48 @@ public class StatusWindow extends javax.swing.JFrame {
         Magia.setText("PM: " + chr.getMagicDamage());
         Classe.setText("CLASSE: " + chr.getClasse().getValor());
         RegionLabel.setText("REGIÃO: " + this.current_region.getValor());
+        GoldLabel.setText("Gold: " + chr.getGold());
+    }
+    
+    public void setBagEnabled(){
+        this.BagButton.setEnabled(true);
     }
     
     public void setCharacter(Character chr){
         this.chr = chr;
     }
     
+    public Character getCharacter(){
+        return this.chr;
+    }
+    
+    /**
+     *
+     * @return
+     * 
+     * Gets the actual character Gold
+     */
+    public int getChrGold(){
+        return chr.getGold();
+    }
+    
     public void setRegion(String r){
-        if (r.equals(Region.BLINDCITY.getValor()))
+        if (r.equals(Region.BLINDCITY.getValor())){
             this.current_region = Region.BLINDCITY;
             this.ShopButton.setEnabled(true);
-        if (r.equals(Region.DESERTO.getValor()))
+        }
+        if (r.equals(Region.DESERTO.getValor())){
             this.current_region = Region.DESERTO;
             this.ShopButton.setEnabled(false);
-        if (r.equals(Region.EGUINOR.getValor()))
+        }
+        if (r.equals(Region.EGUINOR.getValor())){
             this.current_region = Region.EGUINOR;
             this.ShopButton.setEnabled(true);
-        if (r.equals(Region.FLORESTA.getValor()))
+        }
+        if (r.equals(Region.FLORESTA.getValor())){
             this.current_region = Region.FLORESTA;
             this.ShopButton.setEnabled(false);
+        }
             
         updateDisplay();
     }
@@ -69,12 +97,13 @@ public class StatusWindow extends javax.swing.JFrame {
         Magia = new javax.swing.JLabel();
         Experience = new javax.swing.JLabel();
         PH = new javax.swing.JLabel();
+        GoldLabel = new javax.swing.JLabel();
         Classe = new javax.swing.JLabel();
         RegionLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ProfileButton.setText("Perfil");
+        ProfileButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/122X114.png"))); // NOI18N
         ProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProfileButtonActionPerformed(evt);
@@ -158,6 +187,8 @@ public class StatusWindow extends javax.swing.JFrame {
 
         PH.setText("PH:");
 
+        GoldLabel.setText("Gold:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -170,8 +201,10 @@ public class StatusWindow extends javax.swing.JFrame {
                     .addComponent(Magia)
                     .addComponent(Experience))
                 .addGap(65, 65, 65)
-                .addComponent(PH)
-                .addGap(68, 68, 68))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(PH)
+                    .addComponent(GoldLabel))
+                .addGap(50, 50, 50))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +214,9 @@ public class StatusWindow extends javax.swing.JFrame {
                     .addComponent(Nome)
                     .addComponent(PH))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Ataque)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Ataque)
+                    .addComponent(GoldLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Magia)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -209,7 +244,7 @@ public class StatusWindow extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(OptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,12 +270,19 @@ public class StatusWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProfileButtonActionPerformed
-        // TODO add your handling code here:
+        prof.setTitle(chr.getName() + " - Lv " + chr.getLevel());
+        prof.updateDisplay();
+        shop.setVisible(false);
+        map.setVisible(false);
+        prof.setVisible(true);
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
     private void ShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShopButtonActionPerformed
         shop.setTitle(current_region.getValor() + " Shop");
+        shop.updateGold();
         shop.setVisible(true);
+        map.setVisible(false);
+        prof.setVisible(false);
     }//GEN-LAST:event_ShopButtonActionPerformed
 
     private void CreationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreationButtonActionPerformed
@@ -256,11 +298,10 @@ public class StatusWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ExploreButtonActionPerformed
 
     private void MapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MapButtonActionPerformed
+        shop.setVisible(false);
         map.setVisible(true);
+        prof.setVisible(false);
     }//GEN-LAST:event_MapButtonActionPerformed
-    
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Ataque;
@@ -269,6 +310,7 @@ public class StatusWindow extends javax.swing.JFrame {
     private javax.swing.JButton CreationButton;
     private javax.swing.JLabel Experience;
     private javax.swing.JButton ExploreButton;
+    private javax.swing.JLabel GoldLabel;
     private javax.swing.JLabel Magia;
     private javax.swing.JButton MapButton;
     private javax.swing.JLabel Nome;

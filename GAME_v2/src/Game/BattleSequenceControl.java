@@ -1,7 +1,7 @@
 
 package Game;
 
-import Objects.Equipament;
+import Objects.Equipments.Equipment;
 import Npc.Npc;
 
 public class BattleSequenceControl {
@@ -26,7 +26,7 @@ public class BattleSequenceControl {
         return current_enemy;
     }
     
-    public Equipament getDropItem(){
+    public Equipment getDropItem(){
         this.enemysLeft -= 1;
         return this.collection.getDropItem();
     }

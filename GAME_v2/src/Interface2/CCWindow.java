@@ -148,13 +148,13 @@ public class CCWindow extends JFrame {
         }
 
         if (warriorCheckBox.isSelected())
-        window.setCharacter(creationControl.CreateWarrior(nameField.getText()));
+            window.setCharacter(creationControl.CreateWarrior(nameField.getText()));
 
         if (mageCheckBox.isSelected())
-        window.setCharacter(creationControl.CreateMage(nameField.getText()));
+            window.setCharacter(creationControl.CreateMage(nameField.getText()));
 
         if (assassinCheckBox.isSelected())
-        window.setCharacter(creationControl.CreateArcher(nameField.getText()));
+            window.setCharacter(creationControl.CreateArcher(nameField.getText()));
 
         this.setVisible(false);
         window.updateDisplay();

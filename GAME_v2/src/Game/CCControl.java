@@ -1,12 +1,9 @@
 
 package Game;
 
-import Objects.Archer;
-import Objects.Mage;
-import Objects.MagicBook;
-import Objects.Staff;
-import Objects.Sword;
-import Objects.Warrior;
+import Objects.Classes.Archer;
+import Objects.Classes.Mage;
+import Objects.Classes.Warrior;
 
 public class CCControl {
     

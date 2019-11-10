@@ -6,10 +6,9 @@
 package Interface;
 
 import Game.Battle;
-import Objects.Character;
-import Objects.Souls;
-import Objects.Sword;
-import Objects.Equipament;
+import Objects.Classes.Character;
+import Objects.Equipments.Sword;
+import Objects.Equipments.Equipment;
 import Game.BattleSequenceControl;
 import java.awt.Canvas;
 import java.awt.Color;
@@ -32,10 +31,9 @@ public class MainWindow extends JFrame {
     private Battle Bt;
     private BattleSequenceControl Bsc;
     
-    private Souls soul_slot = null;
     private Sword sword_slot = null;
     
-    private Equipament drop_slot;
+    private Equipment drop_slot;
     
     private CreationWindow creationWindow;
     
@@ -111,7 +109,7 @@ public class MainWindow extends JFrame {
         }
     }
     
-    public void setDropSlot(Equipament item){
+    public void setDropSlot(Equipment item){
         this.drop_slot = item;
         this.recentEquipName.setText(item.getName());
     }
