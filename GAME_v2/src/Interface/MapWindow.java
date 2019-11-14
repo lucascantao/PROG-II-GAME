@@ -1,5 +1,5 @@
 
-package Interface2;
+package Interface;
 
 import Objects.Region;
 
@@ -40,6 +40,7 @@ public class MapWindow extends javax.swing.JFrame {
             }
         });
 
+        TravelList.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         TravelList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blind City", "Floresta", "Deserto", "Eguinor" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

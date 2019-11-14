@@ -1,7 +1,7 @@
 
 package Game;
 
-import Interface2.StatusWindow;
+import Interface.StatusWindow;
 import Objects.Equipments.Bag;
 import Objects.Equipments.Equipment;
 import Objects.Equipments.MagicBook;

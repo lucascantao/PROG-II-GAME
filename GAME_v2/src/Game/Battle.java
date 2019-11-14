@@ -6,8 +6,8 @@ package Game;
  * and open the template in the editor.
  */
 
+import Interface.StatusWindow;
 import Objects.Classes.Character;
-import Interface.MainWindow;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  * @author soldgear
  */
 public class Battle extends Thread{
-    private MainWindow Window;
+    private StatusWindow Window;
     private Character chr;
     private Character adv;
     private BattleListener listener;
-    public Battle(MainWindow Window, Character chr, Character adv){
+    public Battle(StatusWindow Window, Character chr, Character adv){
         this.Window = Window;
         this.chr = chr;
         this.adv = adv;
@@ -53,17 +53,17 @@ public class Battle extends Thread{
             listener.turnEnd();
         }
         
-        MainWindow.running = false; //Variavel Estática
+        StatusWindow.running = false; //Variavel Estática
         
         if (chr.getHealthPoints() > 0){
             chr.restoreHP(); // restore 30% of chr HP.
             listener.dropItem();
-            Window.printTerminal("Vitória! Parte da vida restaurada.\n");
-            Window.setAdversary(null);
-            Window.updateDisplayComponents();
+//            Window.printTerminal("Vitória! Parte da vida restaurada.\n");
+//            Window.setAdversary(null);
+//            Window.updateDisplayComponents();
             listener.battleEnd();
         }else{
-            Window.printTerminal("Derrota");
+//            Window.printTerminal("Derrota");
             // TODO Defeat consequences
         }
     }

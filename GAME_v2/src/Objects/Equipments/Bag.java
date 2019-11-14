@@ -12,7 +12,7 @@ public class Bag extends Equipment{
     
     public Bag(String name, int cost){
         super(name, cost);
-        MaxCapacity = 20;
+        MaxCapacity = 10;
     }
     
     public void GuardaNaMochila(Equipment e){

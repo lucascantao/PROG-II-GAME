@@ -1,5 +1,5 @@
 
-package Interface2;
+package Interface;
 
 import Game.ShopControl;
 import javax.swing.JOptionPane;

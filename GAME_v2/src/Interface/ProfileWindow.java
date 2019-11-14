@@ -1,5 +1,5 @@
 
-package Interface2;
+package Interface;
 
 import Objects.Classes.Character;
 

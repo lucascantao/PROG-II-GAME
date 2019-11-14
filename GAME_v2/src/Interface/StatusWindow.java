@@ -1,9 +1,11 @@
-package Interface2;
+package Interface;
 
 import Objects.Classes.Character;
 import Objects.Region;
 
 public class StatusWindow extends javax.swing.JFrame {
+    
+    public static boolean running = false;
     
     private final MapWindow map;
     private final CCWindow ccw;
@@ -274,6 +276,7 @@ public class StatusWindow extends javax.swing.JFrame {
         prof.updateDisplay();
         shop.setVisible(false);
         map.setVisible(false);
+        bag.setVisible(false);
         prof.setVisible(true);
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
@@ -281,6 +284,7 @@ public class StatusWindow extends javax.swing.JFrame {
         shop.setTitle(current_region.getValor() + " Shop");
         shop.updateGold();
         shop.setVisible(true);
+        bag.setVisible(false);
         map.setVisible(false);
         prof.setVisible(false);
     }//GEN-LAST:event_ShopButtonActionPerformed
@@ -290,7 +294,10 @@ public class StatusWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_CreationButtonActionPerformed
 
     private void BagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BagButtonActionPerformed
-        // TODO add your handling code here:
+        bag.setVisible(true);
+        shop.setVisible(false);
+        map.setVisible(false);
+        prof.setVisible(false);
     }//GEN-LAST:event_BagButtonActionPerformed
 
     private void ExploreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExploreButtonActionPerformed
@@ -301,6 +308,7 @@ public class StatusWindow extends javax.swing.JFrame {
         shop.setVisible(false);
         map.setVisible(true);
         prof.setVisible(false);
+        bag.setVisible(false);
     }//GEN-LAST:event_MapButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
