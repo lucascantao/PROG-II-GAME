@@ -1,12 +1,12 @@
 
-package Objects;
+package Objects.Regions;
 
-public enum Region {
+public enum RegionEnum {
     EGUINOR("Eguinor"), BLINDCITY("Blind City"), DESERTO("Deserto"), FLORESTA("Floresta");
     
     private String valor;
     
-    Region(String valor){
+    RegionEnum(String valor){
         this.valor = valor;
     }
     

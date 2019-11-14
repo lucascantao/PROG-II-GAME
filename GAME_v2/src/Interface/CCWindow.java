@@ -2,17 +2,16 @@
 package Interface;
 
 import Game.CCControl;
-import Objects.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class CCWindow extends JFrame {
 
     private final CCControl creationControl;
-    private final StatusWindow window;
+    private final MainWindow window;
     
 
-    public CCWindow(StatusWindow window) {
+    public CCWindow(MainWindow window) {
         this.window = window;
         creationControl = new CCControl();
         initComponents();

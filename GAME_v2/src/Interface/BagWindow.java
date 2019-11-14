@@ -5,10 +5,10 @@ import Objects.Classes.Character;
 
 public class BagWindow extends javax.swing.JFrame {
     
-    private final StatusWindow Window;
+    private final MainWindow Window;
     private final Character chr;
     
-    public BagWindow(StatusWindow Window, Character chr) {
+    public BagWindow(MainWindow Window, Character chr) {
         this.Window = Window;
         this.chr = chr;
         initComponents();

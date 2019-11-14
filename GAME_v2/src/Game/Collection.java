@@ -20,14 +20,14 @@ public class Collection {
         Staff staff, darkStaff;
         
         LinkedList<Equipment> equipments;
-        LinkedList<Npc> enemys;
+        LinkedList<NPC> enemys;
         Random r;
     
     public Collection(){
         
         r = new Random();
         equipments = new LinkedList<Equipment>();
-        enemys = new LinkedList<Npc>();
+        enemys = new LinkedList<NPC>();
         
         // EQUIPAMENTOS
         
@@ -67,7 +67,7 @@ public class Collection {
         return this.equipments;
     }
     
-    public Npc getRandEnemy(int n){
+    public NPC getRandEnemy(int n){
         return enemys.get(r.nextInt(n));
     }
     

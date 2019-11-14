@@ -1,17 +1,14 @@
 
 package Game;
 
-import Interface.StatusWindow;
-import Objects.Classes.Mage;
-import Npc.BlackMage;
-import Npc.Drake;
+import Interface.MainWindow;
 
 class Game {
 
-    StatusWindow window;
+    MainWindow window;
     
     public Game(){
-        window = new StatusWindow();
+        window = new MainWindow();
 //        window.setCharacter(warrior1);
 //        window.setAdversary(drake);
 //        window.initDisplayComponents();

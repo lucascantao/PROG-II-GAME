@@ -19,7 +19,7 @@ public class Mage extends Character{
         enemy.setHealthPoints(enemy.getHealthPoints() - damage);
         if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);
-            this.setExperience(enemy.getBounty());
+            this.addExperience(enemy.getBounty());
         }
     }
     

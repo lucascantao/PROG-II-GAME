@@ -1,9 +1,9 @@
 package Interface;
 
 import Objects.Classes.Character;
-import Objects.Region;
+import Objects.Regions.RegionEnum;
 
-public class StatusWindow extends javax.swing.JFrame {
+public class MainWindow extends javax.swing.JFrame {
     
     public static boolean running = false;
     
@@ -13,10 +13,10 @@ public class StatusWindow extends javax.swing.JFrame {
     private final BagWindow bag;
     private final ProfileWindow prof;
     private Character chr = null;
-    private Region current_region;
+    private RegionEnum current_region;
     
-    public StatusWindow() {
-        current_region = Region.BLINDCITY;
+    public MainWindow() {
+        current_region = RegionEnum.BLINDCITY;
         initComponents();
         setLocation(250, 200);
         setTitle("Clan Quest v2.0");
@@ -62,20 +62,20 @@ public class StatusWindow extends javax.swing.JFrame {
     }
     
     public void setRegion(String r){
-        if (r.equals(Region.BLINDCITY.getValor())){
-            this.current_region = Region.BLINDCITY;
+        if (r.equals(RegionEnum.BLINDCITY.getValor())){
+            this.current_region = RegionEnum.BLINDCITY;
             this.ShopButton.setEnabled(true);
         }
-        if (r.equals(Region.DESERTO.getValor())){
-            this.current_region = Region.DESERTO;
+        if (r.equals(RegionEnum.DESERTO.getValor())){
+            this.current_region = RegionEnum.DESERTO;
             this.ShopButton.setEnabled(false);
         }
-        if (r.equals(Region.EGUINOR.getValor())){
-            this.current_region = Region.EGUINOR;
+        if (r.equals(RegionEnum.EGUINOR.getValor())){
+            this.current_region = RegionEnum.EGUINOR;
             this.ShopButton.setEnabled(true);
         }
-        if (r.equals(Region.FLORESTA.getValor())){
-            this.current_region = Region.FLORESTA;
+        if (r.equals(RegionEnum.FLORESTA.getValor())){
+            this.current_region = RegionEnum.FLORESTA;
             this.ShopButton.setEnabled(false);
         }
             

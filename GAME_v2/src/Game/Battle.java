@@ -6,7 +6,7 @@ package Game;
  * and open the template in the editor.
  */
 
-import Interface.StatusWindow;
+import Interface.MainWindow;
 import Objects.Classes.Character;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,11 +16,11 @@ import java.util.logging.Logger;
  * @author soldgear
  */
 public class Battle extends Thread{
-    private StatusWindow Window;
+    private MainWindow Window;
     private Character chr;
     private Character adv;
     private BattleListener listener;
-    public Battle(StatusWindow Window, Character chr, Character adv){
+    public Battle(MainWindow Window, Character chr, Character adv){
         this.Window = Window;
         this.chr = chr;
         this.adv = adv;
@@ -53,7 +53,7 @@ public class Battle extends Thread{
             listener.turnEnd();
         }
         
-        StatusWindow.running = false; //Variavel Estática
+        MainWindow.running = false; //Variavel Estática
         
         if (chr.getHealthPoints() > 0){
             chr.restoreHP(); // restore 30% of chr HP.

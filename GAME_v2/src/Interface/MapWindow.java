@@ -1,20 +1,20 @@
 
 package Interface;
 
-import Objects.Region;
+import Objects.Regions.RegionEnum;
 
 public class MapWindow extends javax.swing.JFrame {
 
-    private final StatusWindow window;
+    private final MainWindow window;
     
-    private Region Eguinor, BlindCity, Desert, Forest;
+    private RegionEnum Eguinor, BlindCity, Desert, Forest;
 
-    public MapWindow(StatusWindow window) {
+    public MapWindow(MainWindow window) {
         initComponents();
-        Eguinor = Region.EGUINOR;
-        BlindCity = Region.BLINDCITY;
-        Desert = Region.DESERTO;
-        Forest = Region.FLORESTA;
+        Eguinor = RegionEnum.EGUINOR;
+        BlindCity = RegionEnum.BLINDCITY;
+        Desert = RegionEnum.DESERTO;
+        Forest = RegionEnum.FLORESTA;
         setLocation(700, 200);
         this.window = window;
         setDefaultCloseOperation(HIDE_ON_CLOSE);

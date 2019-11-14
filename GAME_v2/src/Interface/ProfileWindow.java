@@ -5,9 +5,9 @@ import Objects.Classes.Character;
 
 public class ProfileWindow extends javax.swing.JFrame {
 
-    private StatusWindow Window;
+    private MainWindow Window;
     private Character chr;
-    public ProfileWindow(StatusWindow Window) {
+    public ProfileWindow(MainWindow Window) {
         this.Window = Window;
         setLocation(250, 200);
         initComponents();

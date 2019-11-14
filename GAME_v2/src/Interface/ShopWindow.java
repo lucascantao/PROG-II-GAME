@@ -6,17 +6,24 @@ import javax.swing.JOptionPane;
 
 public class ShopWindow extends javax.swing.JFrame {
 
-    private StatusWindow Window;
+    private MainWindow Window;
     private ShopControl shopCtrl;
     private int Pay;
     
-    public ShopWindow(StatusWindow Window) {
+    public ShopWindow(MainWindow Window) {
         this.Window = Window;
         this.shopCtrl = new ShopControl();
         Pay = 0;
         setLocation(700, 200);
         initComponents();
         setDefaultCloseOperation(HIDE_ON_CLOSE);
+        initOpt(false);
+    }
+    
+    public void initOpt(boolean bool){
+        BuyOption_Espada.setEnabled(bool);
+        BuyOption_EspadaLonga.setEnabled(bool);
+        BuyOption_LaminaDivina.setEnabled(bool);
     }
 
     public void setTitleShop(String s){
@@ -162,6 +169,7 @@ public class ShopWindow extends javax.swing.JFrame {
         if (BuyOption_Bag.isSelected()){
             Window.getCharacter().setBag(shopCtrl.buyItem(8));
             BuyOption_Bag.setEnabled(false);
+            initOpt(true);
             Window.setBagEnabled();
         }
         //TODO compra das outras opções

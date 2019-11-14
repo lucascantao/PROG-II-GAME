@@ -2,7 +2,7 @@
 package Game;
 
 import Objects.Equipments.Equipment;
-import Npc.Npc;
+import Npc.NPC;
 
 public class BattleSequenceControl {
     
@@ -14,7 +14,7 @@ public class BattleSequenceControl {
     private boolean zombie_state = false;
     private boolean vampire_state = false;
     
-    private Npc current_enemy;
+    private NPC current_enemy;
     
     public BattleSequenceControl(){
         collection = new Collection();
@@ -22,7 +22,7 @@ public class BattleSequenceControl {
         enemysLeft = 3;
     }
     
-    public Npc getCurrentEnemy(){
+    public NPC getCurrentEnemy(){
         return current_enemy;
     }
     
@@ -31,7 +31,7 @@ public class BattleSequenceControl {
         return this.collection.getDropItem();
     }
     
-    public Npc getRandomEnemy(){
+    public NPC getRandomEnemy(){
         return collection.getRandEnemy(enemysLeft);
     }
     

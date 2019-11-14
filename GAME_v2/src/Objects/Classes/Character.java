@@ -10,6 +10,8 @@ public abstract class Character {
     
     protected Classe classe;
     
+    // STATUS
+    
     private String name;
     private int attackDamage;
     private int magicDamage;
@@ -20,12 +22,15 @@ public abstract class Character {
     private int level;
     private int AbilityPoints;
     private double experience;
+    
+    // SLOTS DE EQUIPAMENTOS DISPONÍVEIS
+    
     private Equipment L_Hand;
     private Equipment R_Hand;
     private Equipment Armor;
-    private int Gold;
-    
     private Equipment bag;
+    
+    private int Gold;
             
     public Character(String name){
         this.name = name;
@@ -33,6 +38,11 @@ public abstract class Character {
         experience = 0.0;
         AbilityPoints = 0;
         Gold = 300;
+        L_Hand = null;
+        R_Hand = null;
+        Armor = null;
+        bag = null;
+        
     }
     
     public Character(){
@@ -43,47 +53,10 @@ public abstract class Character {
     
     public abstract void attack(Character enemy);
     
-    public void setBag(Equipment bag){
-        if (bag != null){
-            this.bag = bag;
-        }
-    }
-    
     public void restoreHP(){
         this.healthPoints += this.maxHP * 0.3;
         if (this.healthPoints > this.maxHP) {
             this.healthPoints = this.maxHP;
-        }
-    }
-    
-    public void setLeftHand(Equipment e){ // Habilitar Equipamento e atualizar Status
-        if(this.L_Hand == null){
-            this.L_Hand = e;
-            this.attackDamage += this.L_Hand.getAditionalAD();
-        }
-    }
-    
-    public void setRightHand(Equipment e){
-        if(R_Hand == null){
-            R_Hand = e;
-            e.equip(this);
-        }
-    }
-    
-    public void unequip(String parte){ // Tirar equipamento e atualizar Status
-        if (parte.equals("Esquerda") && L_Hand != null){
-            L_Hand.unequip();
-            L_Hand = null;
-        }
-        
-        if (parte.equals("Armadura") && Armor != null){
-            Armor.unequip();
-            Armor = null;
-        }
-        
-        if (parte.equals("Direita") && R_Hand != null){
-            R_Hand.unequip();
-            R_Hand = null;
         }
     }
     
@@ -113,6 +86,8 @@ public abstract class Character {
     }
     
     // ----GETTERSE AND SETTERS-----
+    
+    // ATRIBUTOS ------------
     
     public String getName() {
         return name;
@@ -162,7 +137,7 @@ public abstract class Character {
         this.energyPoints = energyPoints;
     }
 
-    public void setExperience(double experience) {
+    public void addExperience(double experience) {
         this.experience += experience;
     }
 
@@ -196,6 +171,50 @@ public abstract class Character {
     
     public int getAbilityPoints(){
         return this.AbilityPoints;
+    }
+    
+    
+    // EQUIPAMENTOS -------------------
+    
+    public void setBag(Equipment bag){
+        if (bag != null){
+            this.bag = bag;
+        }
+    }
+    
+    public Equipment getBag(){
+        return this.bag;
+    }
+    
+    public void setLeftHand(Equipment e){ // Habilitar Equipamento e atualizar Status
+        if(this.L_Hand == null){
+            this.L_Hand = e;
+            this.attackDamage += this.L_Hand.getAditionalAD();
+        }
+    }
+    
+    public void setRightHand(Equipment e){
+        if(R_Hand == null){
+            R_Hand = e;
+            e.equip(this);
+        }
+    }
+    
+    public void unequip(String parte){ // Tirar equipamento e atualizar Status
+        if (parte.equals("Esquerda") && L_Hand != null){
+            L_Hand.unequip();
+            L_Hand = null;
+        }
+        
+        if (parte.equals("Armadura") && Armor != null){
+            Armor.unequip();
+            Armor = null;
+        }
+        
+        if (parte.equals("Direita") && R_Hand != null){
+            R_Hand.unequip();
+            R_Hand = null;
+        }
     }
     
     /**
