@@ -13,6 +13,8 @@ public abstract class Character {
     // STATUS
     
     private String name;
+    private int BaseAD;
+    private int BaseMD;
     private int attackDamage;
     private int magicDamage;
     private double attackSpeed;
@@ -28,7 +30,7 @@ public abstract class Character {
     private Equipment L_Hand;
     private Equipment R_Hand;
     private Equipment Armor;
-    private Equipment bag;
+    private Bag bag;
     
     private int Gold;
             
@@ -68,6 +70,10 @@ public abstract class Character {
         this.healthPoints += this.healthPoints * percent;
     }
     
+//    public void poeNaMochila(Equipment e){
+//        this.bag.
+//    }
+    
     public void upgrade(String ability){
         if (ability.equals("Resistencia")){
             this.maxHP += maxHP * 0.3;
@@ -93,11 +99,11 @@ public abstract class Character {
         return name;
     }
 
-    public int getAttackDamage() {
+    public int getTotalAD() {
         return attackDamage;
     }
 
-    public int getMagicDamage() {
+    public int getTotalMD() {
         return magicDamage;
     }
 
@@ -121,12 +127,14 @@ public abstract class Character {
         return L_Hand;
     }
 
-    public void setAttackDamage(int attackDamage) {
-        this.attackDamage = attackDamage;
+    public void setBaseAD(int attackDamage) {
+        this.BaseAD = attackDamage;
+        this.attackDamage = BaseAD;
     }
 
-    public void setMagicDamage(int magicDamage) {
-        this.magicDamage = magicDamage;
+    public void setBaseMD(int magicDamage) {
+        this.BaseMD = magicDamage;
+        this.magicDamage = BaseMD;
     }
 
     public void setHealthPoints(double healthPoints) {
@@ -173,31 +181,40 @@ public abstract class Character {
         return this.AbilityPoints;
     }
     
+    public Equipment getLH(){
+        return L_Hand;
+    }
+    
+    public Equipment getRH(){
+        return R_Hand;
+    }
     
     // EQUIPAMENTOS -------------------
     
     public void setBag(Equipment bag){
         if (bag != null){
-            this.bag = bag;
+            this.bag = (Bag) bag;
         }
     }
     
-    public Equipment getBag(){
+    public Bag getBag(){
         return this.bag;
     }
     
     public void setLeftHand(Equipment e){ // Habilitar Equipamento e atualizar Status
-        if(this.L_Hand == null){
-            this.L_Hand = e;
-            this.attackDamage += this.L_Hand.getAditionalAD();
-        }
+        if(e == R_Hand)
+            return;
+        attackDamage = BaseAD + e.getAditionalAD();
+        magicDamage = BaseMD + e.getAditionalMD();
+        L_Hand = e;
     }
     
     public void setRightHand(Equipment e){
-        if(R_Hand == null){
-            R_Hand = e;
-            e.equip(this);
-        }
+        if(e == L_Hand)
+            return;
+        attackDamage = BaseAD + e.getAditionalAD();
+        magicDamage = BaseMD + e.getAditionalMD();
+        R_Hand = e;
     }
     
     public void unequip(String parte){ // Tirar equipamento e atualizar Status

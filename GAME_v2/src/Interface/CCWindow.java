@@ -37,7 +37,7 @@ public class CCWindow extends JFrame {
 
         classPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Classe"));
 
-        warriorCheckBox.setText("Guerreiro");
+        warriorCheckBox.setText("Lutador");
         warriorCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 warriorCheckBoxActionPerformed(evt);
@@ -106,7 +106,7 @@ public class CCWindow extends JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(createCharButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(classPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 81, Short.MAX_VALUE)))
+                        .addGap(0, 86, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

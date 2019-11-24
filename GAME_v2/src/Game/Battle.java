@@ -1,20 +1,9 @@
 package Game;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 import Interface.MainWindow;
 import Objects.Classes.Character;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-/**
- *
- * @author soldgear
- */
 public class Battle extends Thread{
     private MainWindow Window;
     private Character chr;
@@ -32,8 +21,6 @@ public class Battle extends Thread{
     
     @Override
     public void run(){
-//        System.out.println(chr.getName()+", HP: "+chr.getHealthPoints());
-//        System.out.println(adv.getName()+", HP: "+adv.getHealthPoints());
         
         while((chr.getHealthPoints() > 0) && (adv.getHealthPoints() > 0)){
             
@@ -48,8 +35,7 @@ public class Battle extends Thread{
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
-//            chr.getStatus();
-//            adv.getStatus();
+
             listener.turnEnd();
         }
         
@@ -58,9 +44,6 @@ public class Battle extends Thread{
         if (chr.getHealthPoints() > 0){
             chr.restoreHP(); // restore 30% of chr HP.
             listener.dropItem();
-//            Window.printTerminal("Vitória! Parte da vida restaurada.\n");
-//            Window.setAdversary(null);
-//            Window.updateDisplayComponents();
             listener.battleEnd();
         }else{
 //            Window.printTerminal("Derrota");

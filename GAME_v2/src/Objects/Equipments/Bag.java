@@ -12,7 +12,9 @@ public class Bag extends Equipment{
     
     public Bag(String name, int cost){
         super(name, cost);
-        MaxCapacity = 10;
+        FreeSlot = 5;
+        MaxCapacity = 5;
+        objects = new LinkedList<>();
     }
     
     public void GuardaNaMochila(Equipment e){
@@ -33,8 +35,16 @@ public class Bag extends Equipment{
         }
     }
     
+    public LinkedList<Equipment> getObjects(){
+        return this.objects;
+    }
+    
     public int getMaxCapacity(){
         return MaxCapacity;
+    }
+    
+    public int getFreeSolt(){
+        return FreeSlot;
     }
     
 }

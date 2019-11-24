@@ -31,7 +31,7 @@ public class MapWindow extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        RegionIcon.setText("Region");
+        RegionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Objects/Eguinor Map Sprite.png"))); // NOI18N
 
         TravelButton.setText("Viajar");
         TravelButton.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class MapWindow extends javax.swing.JFrame {
                         .addComponent(TravelList, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TravelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 5, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(

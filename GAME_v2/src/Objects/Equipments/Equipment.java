@@ -25,14 +25,14 @@ public class Equipment {
     
     public void equip(Character chr){
         Owner = chr;
-        Owner.setAttackDamage(Owner.getAttackDamage() + this.AditionalAD);
-        Owner.setMagicDamage(Owner.getMagicDamage() + this.AditionalMD);
+        Owner.setBaseAD(Owner.getTotalAD() + this.AditionalAD);
+        Owner.setBaseMD(Owner.getTotalMD() + this.AditionalMD);
         Owner.setHealthPoints(Owner.getHealthPoints() + this.ExtraHP);
     }
     
     public void unequip(){
-        Owner.setAttackDamage(Owner.getAttackDamage() - this.AditionalAD);
-        Owner.setMagicDamage(Owner.getMagicDamage() - this.AditionalMD);
+        Owner.setBaseAD(Owner.getTotalAD() - this.AditionalAD);
+        Owner.setBaseMD(Owner.getTotalMD() - this.AditionalMD);
         Owner.setHealthPoints(Owner.getHealthPoints() - this.ExtraHP);
         Owner = null;
     }

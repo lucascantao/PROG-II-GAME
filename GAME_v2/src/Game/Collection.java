@@ -11,9 +11,9 @@ import java.util.LinkedList;
 
 public class Collection {
     
-        Drake blueDrake;
-        Drake redDrake; 
-        Drake blackDrake;
+//        Drake blueDrake;
+//        Drake redDrake; 
+//        Drake blackDrake;
 
         MagicBook magicBook, diary, infintyEncyclopedia;
         Sword sword, longSword, divineBlade;
@@ -50,13 +50,13 @@ public class Collection {
         equipments.add(darkStaff);
         
         // INIMIGOS
-        blueDrake = new Drake("Blue Dragon", 1);
-        redDrake = new Drake("Red Dragon", 3);
-        blackDrake = new Drake("Black Dragon", 5); 
-        
-        enemys.add(blueDrake);
-        enemys.add(redDrake);
-        enemys.add(blackDrake);
+//        blueDrake = new Drake("Blue Dragon", 1);
+//        redDrake = new Drake("Red Dragon", 3);
+//        blackDrake = new Drake("Black Dragon", 5); 
+//        
+//        enemys.add(blueDrake);
+//        enemys.add(redDrake);
+//        enemys.add(blackDrake);
     }
     
     public Equipment getDropItem(){

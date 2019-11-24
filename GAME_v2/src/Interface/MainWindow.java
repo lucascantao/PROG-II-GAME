@@ -9,7 +9,7 @@ public class MainWindow extends javax.swing.JFrame {
     
     private final MapWindow map;
     private final CCWindow ccw;
-    private final ShopWindow shop;
+    private final ShopWindow_1 shop;
     private final BagWindow bag;
     private final ProfileWindow prof;
     private Character chr = null;
@@ -24,7 +24,7 @@ public class MainWindow extends javax.swing.JFrame {
         BagButton.setEnabled(false);
         map = new MapWindow(this);
         ccw = new CCWindow(this);
-        shop = new ShopWindow(this);
+        shop = new ShopWindow_1(this);
         bag = new BagWindow(this, chr);
         prof = new ProfileWindow(this);
         ccw.setVisible(true);
@@ -32,8 +32,8 @@ public class MainWindow extends javax.swing.JFrame {
     
     public void updateDisplay(){
         Nome.setText("Nome: "+ chr.getName());
-        Ataque.setText("PA: " + chr.getAttackDamage());
-        Magia.setText("PM: " + chr.getMagicDamage());
+        Ataque.setText("PA: " + chr.getTotalAD());
+        Magia.setText("PM: " + chr.getTotalMD());
         Classe.setText("CLASSE: " + chr.getClasse().getValor());
         RegionLabel.setText("REGIÃO: " + this.current_region.getValor());
         GoldLabel.setText("Gold: " + chr.getGold());
@@ -294,6 +294,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_CreationButtonActionPerformed
 
     private void BagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BagButtonActionPerformed
+        bag.UpdateBag();
         bag.setVisible(true);
         shop.setVisible(false);
         map.setVisible(false);

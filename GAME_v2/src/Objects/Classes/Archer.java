@@ -10,8 +10,8 @@ public class Archer extends Character{
         setHealthPoints(80);
         setMaxHP(80);
         setEnergyPoints(60);
-        setAttackDamage(12);
-        setMagicDamage(0);
+        setBaseAD(12);
+        setBaseMD(0);
         setAttackSpeed(1.8);
         
         setLetality(0.3);
@@ -24,7 +24,7 @@ public class Archer extends Character{
 
     @Override
     public void attack(Character enemy) {
-        double damage = getAttackDamage() + getLevel() + (enemy.getHealthPoints() * getLetality());
+        double damage = getTotalAD() + getLevel() + (enemy.getHealthPoints() * getLetality());
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
         if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);

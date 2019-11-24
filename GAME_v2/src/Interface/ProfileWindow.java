@@ -23,6 +23,10 @@ public class ProfileWindow extends javax.swing.JFrame {
         }
         PointsLabel.setText("Pontos de Habilidades: " + chr.getAbilityPoints());
         LevelLabel.setText("Nível: " + chr.getLevel());
+        if (chr.getLH() != null)
+            Lhand.setText("Mão Esquerda: " + chr.getLH().getName());
+        if (chr.getRH() != null)
+            Rhand.setText("Mão Direita: " +chr.getRH().getName());
     }
 
     @SuppressWarnings("unchecked")
@@ -43,6 +47,8 @@ public class ProfileWindow extends javax.swing.JFrame {
         UpgradeAtaque = new javax.swing.JButton();
         UpgradeConhecimento = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        Rhand = new javax.swing.JLabel();
+        Lhand = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -147,15 +153,29 @@ public class ProfileWindow extends javax.swing.JFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        Rhand.setText("Mão Direita");
+
+        Lhand.setText("Mãe Esquerda");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Rhand)
+                    .addComponent(Lhand))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(Rhand)
+                .addGap(18, 18, 18)
+                .addComponent(Lhand)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,10 +212,12 @@ public class ProfileWindow extends javax.swing.JFrame {
     private javax.swing.JLabel AtaqueLabel;
     private javax.swing.JLabel ConhecimentoLabel;
     private javax.swing.JLabel LevelLabel;
+    private javax.swing.JLabel Lhand;
     private javax.swing.JLabel MagiaLabel;
     private javax.swing.JLabel PointsLabel;
     private javax.swing.JLabel ProfileIcon;
     private javax.swing.JLabel ResistenciaLAbel;
+    private javax.swing.JLabel Rhand;
     private javax.swing.JButton UpgradeAtaque;
     private javax.swing.JButton UpgradeConhecimento;
     private javax.swing.JButton UpgradeMagia;

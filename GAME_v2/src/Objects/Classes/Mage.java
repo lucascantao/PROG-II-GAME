@@ -8,14 +8,14 @@ public class Mage extends Character{
         classe = Classe.MAGO;
         setHealthPoints(150);
         setMaxHP(150);
-        setAttackDamage(2);
-        setMagicDamage(12);
+        setBaseAD(2);
+        setBaseMD(12);
         setAttackSpeed(0.8);
     }
     
     @Override
     public void attack(Character enemy){
-        double damage = getMagicDamage() + getLevel();
+        double damage = getTotalMD() + getLevel();
         enemy.setHealthPoints(enemy.getHealthPoints() - damage);
         if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);

@@ -2,7 +2,9 @@
 package Game;
 
 import Interface.MainWindow;
+import Objects.Classes.Character;
 import Objects.Equipments.Bag;
+import Objects.Equipments.BagAdapter;
 import Objects.Equipments.Equipment;
 import Objects.Equipments.MagicBook;
 import Objects.Equipments.Staff;
@@ -13,6 +15,10 @@ public class ShopControl {
     
     private LinkedList<Equipment> equipments;
     
+    private BagAdapter Ba;
+    
+    private Character chr;
+    
     MagicBook magicBook, diary, infintyEncyclopedia;
     Sword sword, longSword, divineBlade;
     Staff staff, darkStaff;
@@ -20,8 +26,17 @@ public class ShopControl {
     
     public ShopControl(){
         equipments = new LinkedList<>();
+//        Ba = new BagAdapter((Bag)equipments.get(8), "Bag Adapter", 0);
         setEquipaments();
         System.out.println("nome" + equipments.get(0).getName());
+    }
+    
+    public void setChar(Character chr){
+        this.chr = chr;
+    }
+    
+    public void buyBag(){
+        chr.setBag(equipments.get(8));
     }
     
     public Equipment buyItem(int index){
