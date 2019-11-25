@@ -1,5 +1,7 @@
 package Interface;
 
+import Commands.ICommand;
+import Commands.Invoker;
 import Objects.Classes.Character;
 import Objects.Regions.BlindCity;
 import Objects.Regions.RegionEnum;
@@ -28,11 +30,16 @@ private Character chr = null;
     private Region De;
     private Region Eg;
     
+    private Invoker inv;
+    
+    private ICommand com;
+    
     private double TargetXP ;
     
     public MainWindow() {
         initComponents();
         intiReg();
+        inv = new Invoker();
         TargetXP = 40;
         current_region = Bc;
         setLocation(250, 200);
@@ -89,6 +96,18 @@ private Character chr = null;
     
     public Character getCharacter(){
         return this.chr;
+    }
+    
+    public Invoker getInv(){
+        return inv;
+    }
+    
+    public void setCom(ICommand c){
+        com = c;
+    }
+    
+    public ICommand getCom(){
+        return com;
     }
     
     /**

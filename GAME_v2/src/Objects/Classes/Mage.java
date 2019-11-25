@@ -14,13 +14,9 @@ public class Mage extends Character{
     }
     
     @Override
-    public void attack(Character enemy){
-        double damage = getTotalMD() + getLevel();
-        enemy.setHealthPoints(enemy.getHealthPoints() - damage);
-        if (enemy.getHealthPoints() <= 0){
-            enemy.setHealthPoints(0);
-            
-        }
+    public int attack(){
+        return getTotalMD() + getLevel();
+        
     }
     
 }

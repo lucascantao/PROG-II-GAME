@@ -55,7 +55,7 @@ public abstract class Character {
         experience = 0.0;
     }
     
-    public abstract void attack(Character enemy);
+    public abstract int attack();
     
     public void restoreHP(){
         this.healthPoints += this.maxHP * 0.3;

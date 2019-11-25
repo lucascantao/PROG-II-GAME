@@ -36,11 +36,15 @@ public class Battle extends Thread{
         update();
         while((chr.getHealthPoints() > 0) && (adv.getHealthPoints() > 0)){
             if(chr.getAttackSpeed() >= adv.getAttackSpeed()){
-                chr.attack(adv);
-                adv.attack(chr);
+//                chr.attack(adv);
+//                adv.attack(chr);
+                adv.setHealthPoints(adv.getHealthPoints() - chr.attack());
+                chr.setHealthPoints(chr.getHealthPoints() - adv.attack());
             }else{
-                adv.attack(chr);
-                chr.attack(adv);
+//                adv.attack(chr);
+//                chr.attack(adv);
+                chr.setHealthPoints(chr.getHealthPoints() - adv.attack());
+                adv.setHealthPoints(adv.getHealthPoints() - chr.attack());
             }
             update();
             try {

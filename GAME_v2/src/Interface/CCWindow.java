@@ -13,7 +13,7 @@ public class CCWindow extends JFrame {
 
     public CCWindow(MainWindow window) {
         this.window = window;
-        creationControl = new CCControl();
+        creationControl = new CCControl(window);
         initComponents();
         setTitle("Criação de Personagem");
         setLocation(450, 200);

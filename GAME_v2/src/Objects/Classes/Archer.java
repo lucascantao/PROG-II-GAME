@@ -14,7 +14,7 @@ public class Archer extends Character{
         setBaseMD(0);
         setAttackSpeed(1.8);
         
-        setLetality(0.3);
+//        setLetality(0.3);
         
     }
     
@@ -23,20 +23,17 @@ public class Archer extends Character{
     }
 
     @Override
-    public void attack(Character enemy) {
-        double damage = getTotalAD() + getLevel() + (enemy.getHealthPoints() * getLetality());
-        enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
-        if (enemy.getHealthPoints() <= 0){
-            enemy.setHealthPoints(0);
-        }
+    public int attack(){
+        return getTotalAD() * 2 + getLevel();
+        
     }
 
-    public void setLetality(double Letality) {
-        this.Letality = Letality;
-    }
-
-    public double getLetality() {
-        return Letality;
-    }
+//    public void setLetality(double Letality) {
+//        this.Letality = Letality;
+//    }
+//
+//    public double getLetality() {
+//        return Letality;
+//    }
     
 }
