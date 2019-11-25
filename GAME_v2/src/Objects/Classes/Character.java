@@ -4,6 +4,7 @@ package Objects.Classes;
 import Objects.Equipments.Bag;
 import Objects.Equipments.Equipment;
 import Objects.Equipments.TipoEquipamento;
+import Objects.Quests.Quest;
 import java.util.LinkedList;
 
 public abstract class Character {
@@ -27,12 +28,13 @@ public abstract class Character {
     
     // SLOTS DE EQUIPAMENTOS DISPONÍVEIS
     
-    private Equipment L_Hand;
+    private Equipment Weapon;
     private Equipment R_Hand;
     private Equipment Armor;
     private Bag bag;
     
     private int Gold;
+    private Quest MainQuest;
             
     public Character(String name){
         this.name = name;
@@ -40,7 +42,7 @@ public abstract class Character {
         experience = 0.0;
         AbilityPoints = 0;
         Gold = 300;
-        L_Hand = null;
+        Weapon = null;
         R_Hand = null;
         Armor = null;
         bag = null;
@@ -79,10 +81,10 @@ public abstract class Character {
             this.maxHP += maxHP * 0.3;
         }
         if (ability.equals("Magia")){
-            this.magicDamage += magicDamage * 0.3;
+            this.BaseMD += BaseMD * 0.3;
         }
         if (ability.equals("Ataque")){
-            this.attackDamage += attackDamage * 0.3;
+            this.BaseAD += BaseAD * 0.3;
         }
         if (ability.equals("")){
             return;
@@ -98,13 +100,21 @@ public abstract class Character {
     public String getName() {
         return name;
     }
+    
+    public Quest getQuest(){
+        return MainQuest;
+    }
 
     public int getTotalAD() {
-        return attackDamage;
+        if (Weapon != null)
+            return BaseAD + Weapon.getAditionalAD();
+        return BaseAD;
     }
 
     public int getTotalMD() {
-        return magicDamage;
+        if (Weapon != null)
+            return BaseMD + Weapon.getAditionalMD();
+        return BaseMD;
     }
 
     public double getHealthPoints() {
@@ -124,7 +134,7 @@ public abstract class Character {
     }
 
     public Equipment getEquipament() {
-        return L_Hand;
+        return Weapon;
     }
 
     public void setBaseAD(int attackDamage) {
@@ -175,14 +185,15 @@ public abstract class Character {
     
     public void UpgradePH(){
         this.AbilityPoints += 1;
+        this.level += 1;
     }
     
     public int getAbilityPoints(){
         return this.AbilityPoints;
     }
     
-    public Equipment getLH(){
-        return L_Hand;
+    public Equipment getWeapon(){
+        return Weapon;
     }
     
     public Equipment getRH(){
@@ -201,16 +212,14 @@ public abstract class Character {
         return this.bag;
     }
     
-    public void setLeftHand(Equipment e){ // Habilitar Equipamento e atualizar Status
-        if(e == R_Hand)
-            return;
+    public void setWeapon(Equipment e){ // Habilitar Equipamento e atualizar Status
         attackDamage = BaseAD + e.getAditionalAD();
         magicDamage = BaseMD + e.getAditionalMD();
-        L_Hand = e;
+        Weapon = e;
     }
     
     public void setRightHand(Equipment e){
-        if(e == L_Hand)
+        if(e == Weapon)
             return;
         attackDamage = BaseAD + e.getAditionalAD();
         magicDamage = BaseMD + e.getAditionalMD();
@@ -218,9 +227,9 @@ public abstract class Character {
     }
     
     public void unequip(String parte){ // Tirar equipamento e atualizar Status
-        if (parte.equals("Esquerda") && L_Hand != null){
-            L_Hand.unequip();
-            L_Hand = null;
+        if (parte.equals("Esquerda") && Weapon != null){
+            Weapon.unequip();
+            Weapon = null;
         }
         
         if (parte.equals("Armadura") && Armor != null){
@@ -246,6 +255,17 @@ public abstract class Character {
     
     public int getGold(){
         return Gold;
+    }
+    
+    public void initQuest(Quest q){
+        if (q.getAcomplish())
+            return;
+        MainQuest = q;
+    }
+    
+    public void finishQuest(){
+        MainQuest.finishQuest();
+        MainQuest = null;
     }
     
     

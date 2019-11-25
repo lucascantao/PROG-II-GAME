@@ -19,7 +19,7 @@ public class Warrior extends Character{
             setMaxHP(200);
             setEnergyPoints(100);
             setBaseAD(8);
-            setBaseMD(0);
+            setBaseMD(2);
             setAttackSpeed(1.1);
     }
     
@@ -29,7 +29,7 @@ public class Warrior extends Character{
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
         if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);
-            this.addExperience(enemy.getBounty());
+            
         }
     } 
 }

@@ -23,6 +23,7 @@ public class BagWindow extends javax.swing.JFrame {
         initComponents();
         initBag();
         setLocation(700, 200);
+        setTitle("Mochila");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
     }
     
@@ -55,8 +56,7 @@ public class BagWindow extends javax.swing.JFrame {
         ObjList = new javax.swing.JList<>();
         jPanel2 = new javax.swing.JPanel();
         EquipEsqButton = new javax.swing.JButton();
-        DiscardBut = new javax.swing.JButton();
-        EquipDirButton = new javax.swing.JButton();
+        SellBut = new javax.swing.JButton();
         CloseBut = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,25 +84,23 @@ public class BagWindow extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        EquipEsqButton.setText("Equipar (E)");
+        EquipEsqButton.setText("Equipar ");
         EquipEsqButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EquipEsqButtonActionPerformed(evt);
             }
         });
 
-        DiscardBut.setText("Descartar");
-
-        EquipDirButton.setText("Equipar (D)");
-        EquipDirButton.addActionListener(new java.awt.event.ActionListener() {
+        SellBut.setText("Vender");
+        SellBut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EquipDirButtonActionPerformed(evt);
+                SellButActionPerformed(evt);
             }
         });
 
@@ -112,22 +110,21 @@ public class BagWindow extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(EquipDirButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(EquipEsqButton)
-                    .addComponent(DiscardBut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(SellBut, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(EquipEsqButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(EquipEsqButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EquipDirButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(DiscardBut)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(SellBut)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         CloseBut.setText("Fechar");
@@ -153,7 +150,7 @@ public class BagWindow extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(CloseBut)))
                 .addContainerGap())
         );
@@ -161,34 +158,36 @@ public class BagWindow extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void EquipDirButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipDirButtonActionPerformed
-        String name = ObjList.getSelectedValue();
-        for(Equipment e : bag.getObjects()){
-            if (e.getName() == name){
-                chr.setRightHand(e);
-                return;
-            }
-        }
-        
-    }//GEN-LAST:event_EquipDirButtonActionPerformed
-
     private void EquipEsqButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipEsqButtonActionPerformed
         String name = ObjList.getSelectedValue();
         for(Equipment e : bag.getObjects()){
             if (e.getName() == name){
-                chr.setLeftHand(e);
+                chr.setWeapon(e);
+                Window.updateDisplay();
                 return;
             }
         }
     }//GEN-LAST:event_EquipEsqButtonActionPerformed
 
+    private void SellButActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SellButActionPerformed
+        String name = ObjList.getSelectedValue();
+        for(Equipment e : bag.getObjects()){
+            if (e.getName() == name){
+                chr.addGold(e.getCost());
+                chr.getBag().getObjects().remove(e);
+                Window.updateDisplay();
+                
+            }
+        }
+        UpdateBag();
+    }//GEN-LAST:event_SellButActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CloseBut;
-    private javax.swing.JButton DiscardBut;
-    private javax.swing.JButton EquipDirButton;
     private javax.swing.JButton EquipEsqButton;
     private javax.swing.JList<String> ObjList;
+    private javax.swing.JButton SellBut;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

@@ -38,7 +38,7 @@
               </Group>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="OptionsPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="48" max="32767" attributes="0"/>
+              <EmptySpace pref="59" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -183,8 +183,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="PH" min="-2" max="-2" attributes="0"/>
                       <Component id="GoldLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="HP" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -194,18 +195,21 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Nome" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="PH" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="HP" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="Ataque" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="PH" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="Magia" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="GoldLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="Magia" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="Experience" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="11" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -239,6 +243,11 @@
         <Component class="javax.swing.JLabel" name="GoldLabel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Gold:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="HP">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="HP:"/>
           </Properties>
         </Component>
       </SubComponents>

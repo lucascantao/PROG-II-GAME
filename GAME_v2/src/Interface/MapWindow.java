@@ -8,14 +8,18 @@ public class MapWindow extends javax.swing.JFrame {
     private final MainWindow window;
     
     private RegionEnum Eguinor, BlindCity, Desert, Forest;
+    
+    private String Region;
 
     public MapWindow(MainWindow window) {
         initComponents();
+        RegionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Objects/Blind City Map Sprite.png")));
         Eguinor = RegionEnum.EGUINOR;
         BlindCity = RegionEnum.BLINDCITY;
         Desert = RegionEnum.DESERTO;
         Forest = RegionEnum.FLORESTA;
         setLocation(700, 200);
+        setTitle("Mapa");
         this.window = window;
         setDefaultCloseOperation(HIDE_ON_CLOSE);
 //        this.TravelList
@@ -42,6 +46,11 @@ public class MapWindow extends javax.swing.JFrame {
 
         TravelList.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         TravelList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Blind City", "Floresta", "Deserto", "Eguinor" }));
+        TravelList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TravelListActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,8 +85,16 @@ public class MapWindow extends javax.swing.JFrame {
     
     private void TravelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TravelButtonActionPerformed
         setVisible(false);
-        window.setRegion(TravelList.getSelectedItem().toString());
+        Region = TravelList.getSelectedItem().toString();
+        window.setRegion(Region);
     }//GEN-LAST:event_TravelButtonActionPerformed
+
+    private void TravelListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TravelListActionPerformed
+        Region = TravelList.getSelectedItem().toString();
+        
+        RegionIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Objects/" + Region + " Map Sprite.png")));
+        
+    }//GEN-LAST:event_TravelListActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -43,7 +43,7 @@
                   <Component id="jPanel1" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="29" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Component id="CloseBut" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -76,7 +76,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="jScrollPane1" pref="169" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -118,12 +118,14 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="EquipDirButton" max="32767" attributes="0"/>
-                      <Component id="EquipEsqButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="DiscardBut" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Component id="SellBut" min="-2" pref="94" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="EquipEsqButton" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -132,11 +134,9 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="EquipEsqButton" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="EquipDirButton" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="SellBut" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="DiscardBut" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -144,23 +144,18 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="EquipEsqButton">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Equipar (E)"/>
+            <Property name="text" type="java.lang.String" value="Equipar "/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EquipEsqButtonActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="DiscardBut">
+        <Component class="javax.swing.JButton" name="SellBut">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Descartar"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="EquipDirButton">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Equipar (D)"/>
+            <Property name="text" type="java.lang.String" value="Vender"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="EquipDirButtonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SellButActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

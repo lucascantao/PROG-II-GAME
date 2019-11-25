@@ -201,7 +201,10 @@ public class ShopWindow_1 extends javax.swing.JFrame {
         if (checkCharacterBag())
             return;
         //Se não, me vende uma
-        Window.getCharacter().setBag(shopCtrl.buyItem(8));
+        obj = shopCtrl.buyItem(8);
+        if (!pay(obj.getCost()))
+            return;
+        Window.getCharacter().setBag(obj);
         //Após a compra da mochila, habilita a opção correspondente na janela principal
         Window.setBagEnabled();
         updateBagSlot();
@@ -209,8 +212,10 @@ public class ShopWindow_1 extends javax.swing.JFrame {
 
     private void EspadaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EspadaButtonActionPerformed
         //Se eu não tiver mochila, retorna
-        if (!checkCharacterBag())
+        if (!checkCharacterBag()){
+            JOptionPane.showMessageDialog(null, "Sem Mochila Equipada");        
             return;
+        }
         if (Window.getCharacter().getBag().getFreeSolt() == 0)
             return;
         obj = shopCtrl.buyItem(3);
@@ -221,8 +226,10 @@ public class ShopWindow_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_EspadaButtonActionPerformed
 
     private void LivroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LivroButtonActionPerformed
-        if (!checkCharacterBag())
+        if (!checkCharacterBag()){
+            JOptionPane.showMessageDialog(null, "Sem Mochila Equipada");        
             return;
+        }   
         if (Window.getCharacter().getBag().getFreeSolt() == 0)
             return;
         obj = shopCtrl.buyItem(0);
@@ -233,8 +240,10 @@ public class ShopWindow_1 extends javax.swing.JFrame {
     }//GEN-LAST:event_LivroButtonActionPerformed
 
     private void CajadoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CajadoButtonActionPerformed
-        if (!checkCharacterBag())
+        if (!checkCharacterBag()){
+            JOptionPane.showMessageDialog(null, "Sem Mochila Equipada");        
             return;
+        }
         if (Window.getCharacter().getBag().getFreeSolt() == 0)
             return;
         obj = shopCtrl.buyItem(6);

@@ -1,9 +1,13 @@
 package Interface;
 
 import Objects.Classes.Character;
+import Objects.Regions.BlindCity;
 import Objects.Regions.RegionEnum;
+import Objects.Regions.Region;
+import java.util.LinkedList;
+import javax.swing.JFrame;
 
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends JFrame {
     
     public static boolean running = false;
     
@@ -12,12 +16,25 @@ public class MainWindow extends javax.swing.JFrame {
     private final ShopWindow_1 shop;
     private final BagWindow bag;
     private final ProfileWindow prof;
-    private Character chr = null;
-    private RegionEnum current_region;
+    private final ExploreWindow exp;
+//    private final BattleWindow battle;
+private Character chr = null;
+    
+    private LinkedList<JFrame> WindowList;
+    
+    private Region current_region;
+    private Region Bc;
+    private Region Fo;
+    private Region De;
+    private Region Eg;
+    
+    private double TargetXP ;
     
     public MainWindow() {
-        current_region = RegionEnum.BLINDCITY;
         initComponents();
+        intiReg();
+        TargetXP = 40;
+        current_region = Bc;
         setLocation(250, 200);
         setTitle("Clan Quest v2.0");
         setVisible(false);
@@ -27,15 +44,38 @@ public class MainWindow extends javax.swing.JFrame {
         shop = new ShopWindow_1(this);
         bag = new BagWindow(this, chr);
         prof = new ProfileWindow(this);
+        exp = new ExploreWindow(this);
         ccw.setVisible(true);
     }
     
+    public void intiReg(){
+        Bc = new Region("Blind City",RegionEnum.BLINDCITY);
+        Fo = new Region("Floresta", RegionEnum.FLORESTA);
+        De = new Region("Deserto", RegionEnum.DESERTO);
+        Eg = new Region("Eguinor", RegionEnum.EGUINOR);
+    }
+    
+    public void updateXP(){
+        double xp = chr.getExperience();
+        while (xp >= TargetXP){
+            chr.UpgradePH();
+            TargetXP += (TargetXP*0.5);
+        }
+        Experience.setText("XP: " + chr.getExperience() + "/" + TargetXP);
+    }
+    
+    public Region getCurrentRegion(){
+        return current_region;
+    }
+    
     public void updateDisplay(){
+        updateXP();
         Nome.setText("Nome: "+ chr.getName());
+        HP.setText("HP: "+chr.getHealthPoints());
         Ataque.setText("PA: " + chr.getTotalAD());
         Magia.setText("PM: " + chr.getTotalMD());
         Classe.setText("CLASSE: " + chr.getClasse().getValor());
-        RegionLabel.setText("REGIÃO: " + this.current_region.getValor());
+        RegionLabel.setText("REGIÃO: " + this.current_region.getName());
         GoldLabel.setText("Gold: " + chr.getGold());
     }
     
@@ -63,25 +103,29 @@ public class MainWindow extends javax.swing.JFrame {
     
     public void setRegion(String r){
         if (r.equals(RegionEnum.BLINDCITY.getValor())){
-            this.current_region = RegionEnum.BLINDCITY;
+            this.current_region = Bc;
             this.ShopButton.setEnabled(true);
         }
         if (r.equals(RegionEnum.DESERTO.getValor())){
-            this.current_region = RegionEnum.DESERTO;
+            this.current_region = De;
             this.ShopButton.setEnabled(false);
         }
         if (r.equals(RegionEnum.EGUINOR.getValor())){
-            this.current_region = RegionEnum.EGUINOR;
+            this.current_region = Eg;
             this.ShopButton.setEnabled(true);
         }
         if (r.equals(RegionEnum.FLORESTA.getValor())){
-            this.current_region = RegionEnum.FLORESTA;
+            this.current_region = Fo;
             this.ShopButton.setEnabled(false);
         }
             
         updateDisplay();
     }
-
+    
+    public void show(String name){
+        
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,6 +144,7 @@ public class MainWindow extends javax.swing.JFrame {
         Experience = new javax.swing.JLabel();
         PH = new javax.swing.JLabel();
         GoldLabel = new javax.swing.JLabel();
+        HP = new javax.swing.JLabel();
         Classe = new javax.swing.JLabel();
         RegionLabel = new javax.swing.JLabel();
 
@@ -191,6 +236,8 @@ public class MainWindow extends javax.swing.JFrame {
 
         GoldLabel.setText("Gold:");
 
+        HP.setText("HP:");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -205,8 +252,9 @@ public class MainWindow extends javax.swing.JFrame {
                 .addGap(65, 65, 65)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PH)
-                    .addComponent(GoldLabel))
-                .addGap(50, 50, 50))
+                    .addComponent(GoldLabel)
+                    .addComponent(HP))
+                .addGap(39, 39, 39))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -214,16 +262,18 @@ public class MainWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Nome)
-                    .addComponent(PH))
+                    .addComponent(HP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ataque)
+                    .addComponent(PH))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Magia)
                     .addComponent(GoldLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Magia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Experience)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         Classe.setText("Classe");
@@ -246,7 +296,7 @@ public class MainWindow extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(OptionsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,7 +331,7 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_ProfileButtonActionPerformed
 
     private void ShopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ShopButtonActionPerformed
-        shop.setTitle(current_region.getValor() + " Shop");
+        shop.setTitle(current_region.getName() + " Shop");
         shop.updateGold();
         shop.setVisible(true);
         bag.setVisible(false);
@@ -302,7 +352,8 @@ public class MainWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_BagButtonActionPerformed
 
     private void ExploreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExploreButtonActionPerformed
-        // TODO add your handling code here:
+        exp.UpdateQuests();
+        exp.setVisible(true);
     }//GEN-LAST:event_ExploreButtonActionPerformed
 
     private void MapButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MapButtonActionPerformed
@@ -320,6 +371,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel Experience;
     private javax.swing.JButton ExploreButton;
     private javax.swing.JLabel GoldLabel;
+    private javax.swing.JLabel HP;
     private javax.swing.JLabel Magia;
     private javax.swing.JButton MapButton;
     private javax.swing.JLabel Nome;

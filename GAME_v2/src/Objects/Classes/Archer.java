@@ -28,7 +28,6 @@ public class Archer extends Character{
         enemy.setHealthPoints(enemy.getHealthPoints() - damage); 
         if (enemy.getHealthPoints() <= 0){
             enemy.setHealthPoints(0);
-            this.addExperience(enemy.getBounty());
         }
     }
 

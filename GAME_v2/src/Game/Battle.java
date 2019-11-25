@@ -1,15 +1,19 @@
 package Game;
 
 
+import Interface.BattleWindow;
 import Interface.MainWindow;
 import Objects.Classes.Character;
 
 public class Battle extends Thread{
-    private MainWindow Window;
+    private BattleWindow Window;
     private Character chr;
     private Character adv;
     private BattleListener listener;
-    public Battle(MainWindow Window, Character chr, Character adv){
+    
+    private boolean Ataque;
+    
+    public Battle(BattleWindow Window, Character chr, Character adv){
         this.Window = Window;
         this.chr = chr;
         this.adv = adv;
@@ -19,11 +23,18 @@ public class Battle extends Thread{
         this.listener = listener;
     }
     
+    public void update(){
+        Window.updateStatusDisplay();
+    }
+    
     @Override
     public void run(){
-        
+        initBattle();
+    }
+    
+    public void initBattle(){
+        update();
         while((chr.getHealthPoints() > 0) && (adv.getHealthPoints() > 0)){
-            
             if(chr.getAttackSpeed() >= adv.getAttackSpeed()){
                 chr.attack(adv);
                 adv.attack(chr);
@@ -31,23 +42,28 @@ public class Battle extends Thread{
                 adv.attack(chr);
                 chr.attack(adv);
             }
+            update();
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException ex) {
             }
-
-            listener.turnEnd();
+            
         }
+//            listener.turnEnd();
+        
+        Window.setVisible(false);
         
         MainWindow.running = false; //Variavel Estática
+//        MainWindow.updateStatusDisplay();
         
         if (chr.getHealthPoints() > 0){
             chr.restoreHP(); // restore 30% of chr HP.
-            listener.dropItem();
-            listener.battleEnd();
+            System.out.println("Vitoria");
+            Window.finish();
         }else{
-//            Window.printTerminal("Derrota");
-            // TODO Defeat consequences
+            System.out.println("Derrota");
+            chr.restoreHP();
+            Window.fail();
         }
     }
     
