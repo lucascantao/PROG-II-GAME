@@ -28,6 +28,10 @@ public class QuestControl {
         questList.add(new Quest("Desafio", 60, 45, "Blind City")); //1
         questList.get(1).SetDescription(D2);
         questList.get(1).setNPC(NPCList.get(0));
+        
+        questList.add(new Quest("O melhor Arqueiro", 50, 75, "Eguinor")); //1
+        questList.get(2).SetDescription(D3);
+        questList.get(2).setNPC(NPCList.get(2));
     }
     
     public LinkedList<Quest> getQuests(){
@@ -59,6 +63,9 @@ public class QuestControl {
                 + "\nhabilidades como guerreiro, "
                 + "\nlute comigo e prove "
                 + "\nsua determinação!";
+        
+        D3 = "Sou o melhor arqueiro "
+                + "\nde Eguinor, desafie-me!";
     }
     
 }

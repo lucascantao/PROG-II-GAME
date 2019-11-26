@@ -152,7 +152,6 @@ private Character chr = null;
         ProfileButton = new javax.swing.JButton();
         OptionsPanel = new javax.swing.JPanel();
         ShopButton = new javax.swing.JButton();
-        CreationButton = new javax.swing.JButton();
         BagButton = new javax.swing.JButton();
         ExploreButton = new javax.swing.JButton();
         MapButton = new javax.swing.JButton();
@@ -180,13 +179,6 @@ private Character chr = null;
         ShopButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ShopButtonActionPerformed(evt);
-            }
-        });
-
-        CreationButton.setText("Criação");
-        CreationButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreationButtonActionPerformed(evt);
             }
         });
 
@@ -219,7 +211,6 @@ private Character chr = null;
                 .addContainerGap()
                 .addGroup(OptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ShopButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(CreationButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(BagButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(ExploreButton, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                     .addComponent(MapButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -230,15 +221,13 @@ private Character chr = null;
             .addGroup(OptionsPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(ShopButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(CreationButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(BagButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(ExploreButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(MapButton, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(17, 17, 17))
         );
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -358,10 +347,6 @@ private Character chr = null;
         prof.setVisible(false);
     }//GEN-LAST:event_ShopButtonActionPerformed
 
-    private void CreationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreationButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CreationButtonActionPerformed
-
     private void BagButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BagButtonActionPerformed
         bag.UpdateBag();
         bag.setVisible(true);
@@ -386,7 +371,6 @@ private Character chr = null;
     private javax.swing.JLabel Ataque;
     private javax.swing.JButton BagButton;
     private javax.swing.JLabel Classe;
-    private javax.swing.JButton CreationButton;
     private javax.swing.JLabel Experience;
     private javax.swing.JButton ExploreButton;
     private javax.swing.JLabel GoldLabel;
